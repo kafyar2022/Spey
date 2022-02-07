@@ -1,0 +1,44 @@
+/** report section start */
+.report-title {
+    padding-top: 0px;
+}
+.report-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+.report-content {
+    color: #8f8f8f;
+}
+/** report section end */
+/** reports section start */
+.reports {
+    margin-bottom: 80px;
+}
+.report-content {
+    margin-top: 32px;
+}
+.reports-carousel .owl-nav,
+.reports-carousel .owl-dots {
+    display: none;
+}
+/** reports section end */
+/*! adaptive start */
+@media screen and (max-width: 1299px) {
+    /** tablet */
+    .report-img {
+        height: 300px;
+        border-radius: 12px;
+    }
+    .report-content {
+        margin-top: 16px;
+    }
+    .reports {
+        margin-bottom: 48px;
+    }
+}
+@media screen and (max-width: 833px) {
+    /** mobile */
+}
+/*! adaptive end */

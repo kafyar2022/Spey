@@ -1,0 +1,211 @@
+/** cooperation section start */
+.cooperation p {
+    color: #8f8f8f;
+}
+/** cooperation section end */
+/** geography presence start */
+.contacts-geography-presence {
+    overflow: hidden;
+}
+.geography-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 32px 0px;
+    gap: 16px;
+}
+.geography-info__item {
+    height: 80px;
+    max-height: 80px;
+    margin-left: 24px;
+    position: relative;
+    border-radius: 16px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 16px;
+    gap: 8px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-grow: 1;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 15%);
+}
+.geography-info__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    background-color: #2659d1;
+    height: 48px;
+    width: 48px;
+    position: absolute;
+    top: calc(50% - 24px);
+    left: -24px;
+}
+.geography-info__content {
+    max-width: 230px;
+    flex-grow: 1;
+}
+.geography-info__location-icon {
+    display: flex;
+    min-width: 24px;
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    background-color: #00b052;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+.geography-info__title {
+    font-size: 10px;
+    color: #8f8f8f;
+}
+/** geography presence end */
+/** pharmacovigilanc section start */
+.pharmacovigilanc__container {
+    width: 585px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.pharmacovigilanc p {
+    color: #8f8f8f;
+}
+.pharmacovigilanc p b {
+    color: #1d1d1d;
+    font-weight: 400;
+}
+.contact-us {
+    padding-bottom: 80px;
+}
+.contact-us__container {
+    width: 585px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.contact-form {
+    border-radius: 16px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    width: calc(100% - 33px);
+    margin-left: 33px;
+    padding-top: 32px;
+    padding-right: 24px;
+    padding-bottom: 32px;
+    padding-left: 72px;
+    gap: 16px;
+}
+.contact-form__icon {
+    position: absolute;
+    top: 32px;
+    left: -33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    background-color: #2659d1;
+    height: 66px;
+    width: 66px;
+}
+.contact-form__input {
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    height: 50px;
+    border: 1px solid #707070;
+}
+.contact-form__input--medicine {
+    border-color: #2ec7d6;
+    background-color: #2ec7d6;
+    color: #fff;
+    font-weight: 600;
+}
+.contact-form__input--medicine::placeholder {
+    color: inherit;
+}
+.contact-form__textarea {
+    border: 1px solid #707070;
+    border-radius: 16px;
+    padding: 16px;
+    min-height: 136px;
+    margin: 8px 0px 16px 0px;
+}
+.contact-form__submit-btn {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    transition: 0.3s;
+}
+.contact-form__submit-btn:hover {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 15%);
+}
+.pharmacovigilanc {
+    margin-bottom: 80px;
+}
+.contacts-page .map-wrap {
+    margin-bottom: 0px;
+}
+/** pharmacovigilanc section end */
+/*! adaptive start */
+@media screen and (max-width: 1299px) {
+    /** tablet */
+    .geography-info {
+        flex-direction: column;
+    }
+    .geography-info__content {
+        max-width: initial;
+    }
+    .contact-us__title {
+        display: none;
+    }
+    .pharmacovigilanc {
+        margin-bottom: 48px;
+    }
+    .pharmacovigilanc__container {
+        width: 694px;
+        display: flex;
+        gap: 16px;
+    }
+    .contact-form {
+        margin-top: 48px;
+        margin-left: 16px;
+        margin-right: 0px;
+        width: calc(100% - 20px);
+        padding-left: 40px;
+        min-width: 338px;
+        padding-right: 16px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        gap: 8px;
+    }
+    .contact-form__icon {
+        height: 40px;
+        width: 40px;
+        border-radius: 8px;
+        left: -20px;
+        top: 16px;
+        padding: 8px;
+    }
+    .contact-form__textarea {
+        margin-top: 0px;
+    }
+    .contact-form__submit-btn {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 833px) {
+    /** mobile */
+    .pharmacovigilanc__container {
+        flex-wrap: wrap;
+        gap: 32px;
+    }
+    .contact-form {
+        margin-top: 0px;
+    }
+}
+/*! adaptive end */
