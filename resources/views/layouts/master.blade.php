@@ -19,8 +19,8 @@
   @hasSection('meta-tags')
     @yield('meta-tags')
   @else
-    <meta name="description" content="Spey – Здоровье - ответственность. Наша миссия - Способствовать улучшению здоровья и благополучия людей.">
-    <meta property="og:description" content="Spey – Здоровье - ответственность. Наша миссия - Способствовать улучшению здоровья и благополучия людей.">
+    <meta name="description" content="Здоровье - ответственность. Наша миссия - Способствовать улучшению здоровья и благополучия людей.">
+    <meta property="og:description" content="Здоровье - ответственность. Наша миссия - Способствовать улучшению здоровья и благополучия людей.">
     <meta property="og:title" content="Spey" />
     <meta property="og:image" content="{{ asset('img/favicons/logo-share.png') }}">
     <meta property="og:image:alt" content="Spey – Лого">
