@@ -6,13 +6,13 @@
         <div class="sites-dropdown" data-family="sites-dropdown">
             <button class="button sites-dropdown__button" data-family="sites-dropdown" type="button">
                 <svg class="gps-icon" data-family="sites-dropdown" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><g data-family="sites-dropdown" transform="translate(6.799 6.799)"><path data-family="sites-dropdown" d="M138.2,136a2.2,2.2,0,1,0,2.2,2.2A2.2,2.2,0,0,0,138.2,136Zm0,3.145a.943.943,0,1,1,.943-.943A.945.945,0,0,1,138.2,139.145Z" transform="translate(-136 -136)" fill="#fff"/></g><path data-family="sites-dropdown" d="M17.25,8.25H15.706A6.759,6.759,0,0,0,9.75,2.294V.75a.75.75,0,1,0-1.5,0V2.294A6.759,6.759,0,0,0,2.294,8.25H.75a.75.75,0,1,0,0,1.5H2.294A6.759,6.759,0,0,0,8.25,15.706V17.25a.75.75,0,0,0,1.5,0V15.706A6.759,6.759,0,0,0,15.706,9.75H17.25a.75.75,0,0,0,0-1.5ZM9,14.25A5.25,5.25,0,1,1,14.25,9,5.256,5.256,0,0,1,9,14.25Z" fill="#fff"/></svg>
-                {{__('Kazakhstan')}}
+                {{__('Armenia')}}
                 <svg class="sites-dropdown__icon" data-family="sites-dropdown" xmlns="http://www.w3.org/2000/svg" width="14.526" height="8" viewBox="0 0 14.526 8"><g data-family="sites-dropdown" transform="translate(0 -54.091)"><path data-family="sites-dropdown" d="M13.276,54.307,7.263,60.32,1.251,54.306A.733.733,0,0,0,.214,55.344l6.53,6.532h0a.732.732,0,0,0,1.036,0l6.53-6.532a.733.733,0,1,0-1.036-1.037Z" transform="translate(0 0)" fill="#fff"/></g></svg>
             </button>
             <div class="sites-dropdown__content" data-family="sites-dropdown">
                 <ul class="sites-dropdown__list" data-family="sites-dropdown">
                     @foreach ($header->sites as $site)
-                        @if ($site->id != 3)
+                        @if ($site->id != 15)
                             <li class="sites-dropdown__item" data-family="sites-dropdown">
                                 <a class="sites-dropdown__link" data-family="sites-dropdown" target="_blank" href="{{$site->link}}">{{$site->title}}</a>
                             </li>
