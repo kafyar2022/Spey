@@ -219,11 +219,9 @@ input[type="search"]::-webkit-search-results-decoration {
   flex-grow: 1;
 }
 .vitrin__product-img {
-  max-width: 260px;
-  max-height: 400px;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 /* vitrin dropdown start */
 .vitrin-dropdown {
