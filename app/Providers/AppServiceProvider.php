@@ -84,11 +84,14 @@ class AppServiceProvider extends ServiceProvider
         'email',
       )->find(3);
 
+      $title = App::currentLocale() . '_title';
+
       return $view->with('route', \Route::currentRouteName())
         ->with('locale', $locale)
         ->with('header', $header)
         ->with('footer', $footer)
-        ->with('currentSite', $currentSite);
+        ->with('currentSite', $currentSite)
+        ->with('title', $title);
     });
   }
 }
