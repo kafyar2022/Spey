@@ -20,7 +20,7 @@ if (productsCreate) {
                 //  leaveConfirm: 'Пожалуйста дождитесь окончания загрузки изображений на сервер! Вы уверены что хотите закрыть страницу?'
             },
             //   defaultImage: '/img/news/simditor/default/default.png', //default image thumb while uploading
-            cleanPaste: true, //clear all styles while copy pasting,
+            cleanPaste: false, //clear all styles while copy pasting,
             imageButton: 'upload',
             toolbar: ['bold', 'underline', '|', 'ol', 'ul', '|', 'link', 'hr'], //image removed
             toolbarFloat: false,
