@@ -14,14 +14,6 @@ class DatabaseSeeder extends Seeder
    */
   public function run()
   {
-    $user = new User;
-    $user->name = 'Админ';
-    $user->login = 'admin';
-    $user->role = 'admin';
-    $password = 'D&VQ\6q9';
-
-    $user->password = bcrypt($password);
-    $user->save();
 
     $this->call([
       SitesSeeder::class,

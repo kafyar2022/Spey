@@ -90,7 +90,7 @@ class ProductsController extends Controller
       'category-id' => 'required',
       'ru-title' => 'required',
       'en-title' => 'required',
-      'img' => 'required|mimes:png|max:100',
+      'img' => 'required|mimes:png|max:250',
       'ru-instruction' => 'required',
       'en-instruction' => 'required',
       'recipe' => 'required',
