@@ -90,7 +90,7 @@ class ProductsController extends Controller
       'category-id' => 'required',
       'ru-title' => 'required',
       'en-title' => 'required',
-      'img' => 'required|mimes:png|max:250',
+      'img' => 'required|mimes:png|max:1000',
       'ru-instruction' => 'required',
       'en-instruction' => 'required',
       'recipe' => 'required',
@@ -160,7 +160,7 @@ class ProductsController extends Controller
     ]);
     if ($request->file('img')) {
       $request->validate([
-        'img' => 'mimes:png|max:100',
+        'img' => 'mimes:png|max:1000',
       ]);
     }
     if ($request->recipe == 'true') {
