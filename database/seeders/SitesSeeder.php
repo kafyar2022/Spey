@@ -17,7 +17,7 @@ class SitesSeeder extends Seeder
     // Spey sites according to country locations
     $sites = array(
       array(
-        'id' => 14,
+        'id' => 1,
         'en_title' => 'Europe',
         'ru_title' => 'Европа',
         'en_location' => 'Spey in Europe',
@@ -29,7 +29,7 @@ class SitesSeeder extends Seeder
         'link' => 'https://spey.eu',
       ),
       array(
-        'id' => 13,
+        'id' => 2,
         'en_title' => 'Greece',
         'ru_title' => 'Греция',
         'en_location' => 'Spey in Greece',
@@ -41,7 +41,7 @@ class SitesSeeder extends Seeder
         'link' => 'https://spey.gr',
       ),
       array(
-        'id' => 12,
+        'id' => 3,
         'en_title' => 'Portugal',
         'ru_title' => 'Португалия',
         'en_location' => 'Spey in Portugal',
@@ -53,7 +53,7 @@ class SitesSeeder extends Seeder
         'link' => 'https://spey.pt',
       ),
       array(
-        'id' => 11,
+        'id' => 4,
         'en_title' => 'Bulgaria',
         'ru_title' => 'Болгария',
         'en_location' => 'Spey in Bulgaria',
@@ -65,7 +65,7 @@ class SitesSeeder extends Seeder
         'link' => 'https://spey.bg',
       ),
       array(
-        'id' => 2,
+        'id' => 5,
         'en_title' => 'Russia',
         'ru_title' => 'Россия',
         'en_location' => 'Spey in Russia',
@@ -77,7 +77,7 @@ class SitesSeeder extends Seeder
         'link' => 'https://spey.com.ru',
       ),
       array(
-        'id' => 7,
+        'id' => 6,
         'en_title' => 'Georgia',
         'ru_title' => 'Грузия',
         'en_location' => 'Spey in Georgia',
@@ -90,7 +90,7 @@ class SitesSeeder extends Seeder
       ),
       
       array(
-        'id' => 15,
+        'id' => 7,
         'en_title' => 'Armenia',
         'ru_title' => 'Армения',
         'en_location' => 'Spey in Armenia',
@@ -138,7 +138,7 @@ class SitesSeeder extends Seeder
         'link' => 'https://spey.do',
       ),
       array(
-        'id' => 3,
+        'id' => 11,
         'en_title' => 'Kazakhstan',
         'ru_title' => 'Казахстан',
         'en_location' => 'Spey in Kazakhstan',
@@ -150,7 +150,7 @@ class SitesSeeder extends Seeder
         'link' => 'https://spey.kz',
       ),
       array(
-        'id' => 1,
+        'id' => 12,
         'en_title' => 'India',
         'ru_title' => 'Индия',
         'en_location' => 'Spey in India',
@@ -162,7 +162,7 @@ class SitesSeeder extends Seeder
         'link' => 'https://spey.in'
       ),
       array(
-        'id' => 4,
+        'id' => 13,
         'en_title' => 'Uzbekistan',
         'ru_title' => 'Узбекистан',
         'en_location' => 'Spey in Uzbekistan',
@@ -174,7 +174,7 @@ class SitesSeeder extends Seeder
         'link' => 'https://spey.uz',
       ),
       array(
-        'id' => 5,
+        'id' => 14,
         'en_title' => 'Kyrgyzstan',
         'ru_title' => 'Кыргызстан',
         'en_location' => 'Spey in Kyrgyzstan',
@@ -186,7 +186,7 @@ class SitesSeeder extends Seeder
         'link' => 'https://spey.kg',
       ),
       array(
-        'id' => 6,
+        'id' => 15,
         'en_title' => 'Tajikistan',
         'ru_title' => 'Таджикистан',
         'en_location' => 'Spey in Tajikistan',
