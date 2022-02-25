@@ -1848,7 +1848,7 @@ input[type="search"]::-webkit-search-results-decoration {
   gap: 10px;
 }
 
-.our-history.hidden .histories__item:nth-child(n + 7) {
+.our-history.hidden .histories__item:nth-child(n + 10) {
   display: none;
 }
 
@@ -2311,6 +2311,9 @@ input[type="search"]::-webkit-search-results-decoration {
   }
   .geography-presence {
     margin-bottom: 48px;
+  }
+  .our-history.hidden .histories__item:nth-child(n + 7) {
+    display: none;
   }
 }
 

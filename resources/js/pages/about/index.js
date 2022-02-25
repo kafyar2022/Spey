@@ -11,12 +11,12 @@ if (aboutPage) {
 
   const historyItems = aboutPage.querySelectorAll('.histories__item');
 
-  if (window.screen.width < 1300) {
+  if (window.screen.width < 1300 && window.screen.width > 833) {
     historyItems.forEach((item, index) => {
       item.dataset.row = Math.ceil((index + 1) / 2);
     });
   }
-  if (window.screen.width >= 1300) {
+  if (window.screen.width >= 1300 && window.screen.width > 833) {
     historyItems.forEach((item, index) => {
       item.dataset.row = Math.ceil((index + 1) / 3);
     });

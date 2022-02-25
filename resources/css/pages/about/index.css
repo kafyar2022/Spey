@@ -21,7 +21,7 @@
   gap: 10px;
 }
 
-.our-history.hidden .histories__item:nth-child(n + 7) {
+.our-history.hidden .histories__item:nth-child(n + 10) {
   display: none;
 }
 
@@ -484,6 +484,9 @@
   }
   .geography-presence {
     margin-bottom: 48px;
+  }
+  .our-history.hidden .histories__item:nth-child(n + 7) {
+    display: none;
   }
 }
 
