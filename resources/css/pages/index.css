@@ -1,7 +1,7 @@
 /** our values section start */
 
 .our-values {
-  background-image: url(../img/our-values-bg.jpg);
+  background-image: url("../img/our-values-bg.jpg");
   background-size: cover;
   padding-top: 24px;
   padding-bottom: 48px;

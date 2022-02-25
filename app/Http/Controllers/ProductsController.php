@@ -92,14 +92,7 @@ class ProductsController extends Controller
       'en-title' => 'required',
       'img' => 'required|mimes:png|max:1000',
       'ru-instruction' => 'required',
-      'en-instruction' => 'required',
       'recipe' => 'required',
-      'ru-composition' => 'required',
-      'en-composition' => 'required',
-      'ru-indications' => 'required',
-      'en-indications' => 'required',
-      'ru-description' => 'required',
-      'en-description' => 'required',
     ]);
     if ($request->recipe == 'true') {
       $request->recipe = true;
@@ -115,23 +108,25 @@ class ProductsController extends Controller
     $ruInstruction = $request->file('ru-instruction');
     $enInstruction = $request->file('en-instruction');
     $ruInstructionName = uniqid() . '.' . $ruInstruction->getClientOriginalExtension();
-    $enInstructionName = uniqid() . '.' . $enInstruction->getClientOriginalExtension();
     $path = public_path('files');
     $ruInstruction->move($path, $ruInstructionName);
-    $enInstruction->move($path, $enInstructionName);
+    if ($enInstruction) {
+      $enInstructionName = uniqid() . '.' . $enInstruction->getClientOriginalExtension();
+      $enInstruction->move($path, $enInstructionName);
+    }
     // create new product
     $product = new Product;
     $product->category_id = $request->input('category-id');
     $product->en_title = $request->input('en-title');
     $product->ru_title = $request->input('ru-title');
-    $product->en_instruction = $enInstructionName;
+    $enInstruction ? $product->en_instruction = $enInstructionName : '';
     $product->ru_instruction = $ruInstructionName;
-    $product->en_composition = $request->input('en-composition');
-    $product->ru_composition = $request->input('ru-composition');
-    $product->en_indications = $request->input('en-indications');
-    $product->ru_indications = $request->input('ru-indications');
-    $product->en_description = $request->input('en-description');
-    $product->ru_description = $request->input('ru-description');
+    $request->input('en-composition') ? $product->en_composition = $request->input('en-composition') : '';
+    $request->input('ru-composition') ? $product->ru_composition = $request->input('ru-composition') : '';
+    $request->input('en-indications') ? $product->en_indications = $request->input('en-indications') : '';
+    $request->input('ru-indications') ? $product->ru_indications = $request->input('ru-indications') : '';
+    $request->input('en-description') ? $product->en_description = $request->input('en-description') : '';
+    $request->input('ru-description') ? $product->ru_description = $request->input('ru-description') : '';
     $product->recipe = $request->recipe;
     $product->img = $imgName;
     $save = $product->save();
@@ -151,12 +146,6 @@ class ProductsController extends Controller
       'ru-title' => 'required',
       'en-title' => 'required',
       'recipe' => 'required',
-      'ru-composition' => 'required',
-      'en-composition' => 'required',
-      'ru-indications' => 'required',
-      'en-indications' => 'required',
-      'ru-description' => 'required',
-      'en-description' => 'required',
     ]);
     if ($request->file('img')) {
       $request->validate([
