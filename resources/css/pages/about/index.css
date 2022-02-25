@@ -1,24 +1,30 @@
 /** our histories section start */
+
 .our-history {
   margin-bottom: 80px;
 }
+
 .our-history-title {
   padding-bottom: 32px;
 }
+
 .histories {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px 35px;
 }
+
 .histories__item {
   display: flex;
   flex-direction: column;
   padding-left: 25px;
   gap: 10px;
 }
-.histories__item.hidden {
+
+.our-history.hidden .histories__item:nth-child(n + 7) {
   display: none;
 }
+
 .histories__title {
   display: flex;
   flex-wrap: wrap;
@@ -37,9 +43,11 @@
   cursor: pointer;
   transition: 0.3s;
 }
+
 .histories__item:hover .histories__title {
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 15%);
 }
+
 .histories__year {
   display: flex;
   justify-content: center;
@@ -55,6 +63,7 @@
   top: calc(50% - 25px);
   left: -25px;
 }
+
 .histories__inner {
   font-size: 14px;
   font-weight: 300;
@@ -62,14 +71,17 @@
   display: flex;
   flex-direction: column;
 }
+
 .histories__text {
   height: 0px;
   overflow: hidden;
   transition: 0.3s;
 }
+
 .histories__item.show .histories__text {
   height: max-content;
 }
+
 .histories__button {
   border: none;
   background: transparent;
@@ -84,9 +96,11 @@
   overflow: hidden;
   transition: 0.3s;
 }
+
 .histories__item.show .histories__button {
   height: 0px;
 }
+
 .our-history__view-all-btn {
   border: none;
   background-color: transparent;
@@ -98,10 +112,12 @@
   align-items: center;
   cursor: pointer;
 }
+
 .our-history__view-all-text {
   text-align: end;
   color: #8f8f8f;
 }
+
 .our-history__view-all-icon {
   display: flex;
   justify-content: center;
@@ -113,28 +129,38 @@
   border-radius: 15px;
   transition: 0.3s;
 }
+
 .our-history__view-all-btn:hover .our-history__view-all-icon {
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 15%);
 }
+
 .our-history__view-all-icon svg {
   transform: rotate(-180deg);
   transition: 0.3s;
 }
-.our-history__view-all-btn.hidden .our-history__view-all-icon svg {
+
+.our-history.hidden .our-history__view-all-icon svg {
   transform: rotate(-90deg);
 }
+
+
 /** our histories section end */
+
+
 /** present time section start */
+
 .present-time {
   background-color: #2659d1;
   color: #fff;
   padding-top: 64px;
   padding-bottom: 64px;
 }
+
 .present-time__title {
   color: #fff;
   padding-top: 0px;
 }
+
 .present-time b {
   text-transform: uppercase;
   font-size: 15px;
@@ -142,8 +168,13 @@
   margin-bottom: 8px;
   display: block;
 }
+
+
 /** present time section end */
+
+
 /** company in numbers section start */
+
 .company-numbers-item {
   padding-left: 48px;
   display: flex;
@@ -156,6 +187,7 @@
   padding-bottom: 16px;
   min-height: 185px;
 }
+
 .company-numbers-value {
   top: 16px;
   background-color: #2659d1;
@@ -170,25 +202,31 @@
   position: absolute;
   left: 0px;
 }
+
 .company-numbers-title {
   font-weight: 500;
   font-size: 15px;
   text-transform: uppercase;
   margin-bottom: 16px;
 }
+
 .company-numbers-text {
   font-size: 12px;
   color: #8f8f8f;
 }
+
 .company-carousel-wrap {
   position: relative;
 }
+
 .company-carousel .owl-dots {
   display: none;
 }
+
 .company-carousel .owl-nav {
   height: 0px;
 }
+
 .owl-carousel.company-carousel .owl-nav button.owl-prev,
 .owl-carousel.company-carousel .owl-nav button.owl-next,
 .company-carousel__prev-btn,
@@ -206,24 +244,30 @@
   cursor: pointer;
   transition: 0.3s;
 }
+
 .owl-carousel.company-carousel .owl-nav button.owl-prev {
   left: -45px;
 }
+
 .owl-carousel.company-carousel .owl-nav button.owl-next {
   right: -45px;
 }
+
 .owl-carousel.company-carousel .owl-nav button.owl-prev:hover,
 .owl-carousel.company-carousel .owl-nav button.owl-next:hover {
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 15%);
 }
+
 .company-carousel__prev-btn,
 .company-carousel__next-btn {
   background-color: #00b052;
 }
+
 .company-carousel__prev-btn {
   left: -45px;
   transform: rotate(180deg);
 }
+
 .company-carousel__next-btn {
   right: -45px;
 }
@@ -234,9 +278,11 @@
   gap: 24px;
   flex-wrap: wrap;
 }
+
 .mission-vision-content {
   max-width: 300px;
 }
+
 .mission-vision-item {
   color: #fff;
   background-color: #2659d1;
@@ -247,39 +293,52 @@
   align-items: center;
   padding: 40px;
 }
+
 .mission-vision-item:last-child {
   background-color: #2ec7d6;
 }
+
 .mission-vision-title {
   text-transform: uppercase;
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 8px;
 }
+
+
 /** company in numbers section end */
+
 .about-page-values {
   overflow: hidden;
 }
+
+
 /** rdp-areas section start */
+
 .rdp-areas {
   color: #8f8f8f;
   overflow: hidden;
 }
+
 .rdp-areas-carousel__wrap {
   position: relative;
   margin-bottom: 32px;
 }
+
 .rdp-areas-carousel__img {
   border-radius: 15px;
   min-height: 270px;
   object-fit: cover;
 }
+
 .rdp-areas-carousel .owl-dots {
   display: none;
 }
+
 .rdp-areas-carousel .owl-nav {
   height: 0px;
 }
+
 .owl-carousel.rdp-areas-carousel .owl-nav button.owl-prev,
 .owl-carousel.rdp-areas-carousel .owl-nav button.owl-next,
 .rdp-areas-carousel__prev-btn,
@@ -296,29 +355,36 @@
   cursor: pointer;
   transition: 0.3s;
 }
+
 .owl-carousel.rdp-areas-carousel .owl-nav button.owl-prev,
 .rdp-areas-carousel__prev-btn {
   left: -45px;
 }
+
 .owl-carousel.rdp-areas-carousel .owl-nav button.owl-next,
 .rdp-areas-carousel__next-btn {
   right: -45px;
 }
+
 .owl-carousel.rdp-areas-carousel .owl-nav button.owl-prev:hover,
 .owl-carousel.rdp-areas-carousel .owl-nav button.owl-next:hover {
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 15%);
 }
+
 .rdp-areas-carousel__prev-btn,
 .rdp-areas-carousel__next-btn {
   background-color: #00b052;
 }
+
 .rdp-areas-carousel__prev-btn {
   transform: rotate(180deg);
   left: -45px;
 }
+
 .rdp-areas-carousel__next-btn {
   right: -45px;
 }
+
 .rdp-text h2 {
   font-size: 15px;
   text-transform: uppercase;
@@ -326,11 +392,17 @@
   font-weight: 500;
   padding: 0px;
 }
+
+
 /** rdp-areas section end */
+
 .geography-presence {
   margin-bottom: 80px;
 }
+
+
 /*! adaptive & responsive start */
+
 @media screen and (max-width: 1299px) {
   /** tablet */
   .histories {
@@ -414,10 +486,13 @@
     margin-bottom: 48px;
   }
 }
+
 @media screen and (max-width: 833px) {
   /** mobile */
   .histories {
     grid-template-columns: 1fr;
   }
 }
+
+
 /*! adaptive & responsive end */

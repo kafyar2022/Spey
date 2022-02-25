@@ -16,14 +16,14 @@
         </div>
       </div>
     </section>
-    <section class="our-history" id="history">
+    <section class="our-history hidden" id="history">
       <div class="container">
         <h2 class="our-history-title">{!! $page['our-history-title'] !!}</h2>
         <ul class="histories" data-family="history">
           @foreach ($data->histories as $key => $history)
-            <li class="histories__item" data-row="" data-family="history">
+            <li class="histories__item" data-row="{{$key + 1}}" data-family="history">
               <h3 class="histories__title" data-family="history">
-                <div>{!! $history->title !!}</div>
+                <div data-family="history">{!! $history->title !!}</div>
                 <span class="histories__year" data-family="history">{{ $history->year }}</span>
               </h3>
               <div class="histories__inner" data-family="history">

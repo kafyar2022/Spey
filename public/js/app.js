@@ -297,110 +297,44 @@ if (homePage) {
 var aboutPage = document.querySelector('.about-page');
 
 if (aboutPage) {
-  var initialShows = function initialShows() {
-    historiesItems.forEach(function (item) {
-      item.classList.remove('show');
+  var historySection = aboutPage.querySelector('#history');
+  var viewAllBtn = aboutPage.querySelector('.our-history__view-all-btn');
+  viewAllBtn.addEventListener('click', function () {
+    historySection.classList.toggle('hidden');
+  });
+  var historyItems = aboutPage.querySelectorAll('.histories__item');
+
+  if (window.screen.width < 1300) {
+    historyItems.forEach(function (item, index) {
+      item.dataset.row = Math.ceil((index + 1) / 2);
     });
-  };
-
-  var removeHiddens = function removeHiddens() {
-    historiesItems.forEach(function (item) {
-      viewAllBtn.classList.remove('hidden');
-      item.classList.remove('hidden');
-    });
-  };
-
-  var body = document.querySelector('body'); //* histories start
-
-  var view = window.screen.width,
-      histories = aboutPage.querySelector('.histories'),
-      historiesItems = histories.querySelectorAll('.histories__item'),
-      viewAllBtn = aboutPage.querySelector('.our-history__view-all-btn'); // construct initial position
-
-  var initialHiddens = function initialHiddens() {
-    viewAllBtn.classList.add('hidden');
-    historiesItems.forEach(function (item, index) {
-      var row = Math.ceil((index + 1) / 3);
-      item.dataset.row = row;
-
-      if (index < 9) {
-        item.classList.remove('hidden');
-      } else {
-        item.classList.add('hidden');
-      }
-    });
-  };
-
-  if (view < 834) {
-    initialHiddens = function initialHiddens() {
-      viewAllBtn.classList.add('hidden');
-      historiesItems.forEach(function (item, index) {
-        var row = Math.ceil((index + 1) / 1);
-        item.dataset.row = row;
-
-        if (index < 6) {
-          item.classList.remove('hidden');
-        } else {
-          item.classList.add('hidden');
-        }
-      });
-    };
-  } else if (view < 1300) {
-    initialHiddens = function initialHiddens() {
-      viewAllBtn.classList.add('hidden');
-      historiesItems.forEach(function (item, index) {
-        var row = Math.ceil((index + 1) / 2);
-        item.dataset.row = row;
-
-        if (index < 6) {
-          item.classList.remove('hidden');
-        } else {
-          item.classList.add('hidden');
-        }
-      });
-    };
   }
 
-  initialHiddens(); // add events
-
-  historiesItems.forEach(function (item) {
-    var titles = item.querySelectorAll('.histories__title'),
-        row = item.dataset.row;
-    titles.forEach(function (title) {
-      title.onclick = function () {
-        var Items = histories.querySelectorAll("[data-row=\"".concat(row, "\"]"));
-
-        if (title.parentNode.classList.contains('show')) {
-          initialShows();
-        } else {
-          initialShows();
-          Items.forEach(function (item) {
-            item.classList.add('show');
-          });
-        }
-      };
+  if (window.screen.width >= 1300) {
+    historyItems.forEach(function (item, index) {
+      item.dataset.row = Math.ceil((index + 1) / 3);
     });
-  }); // show hide all event
+  }
 
-  viewAllBtn.onclick = function (e) {
-    e.preventDefault();
-
-    if (viewAllBtn.classList.contains('hidden')) {
-      removeHiddens();
-    } else {
-      initialHiddens();
+  historyItems.forEach(function (item) {
+    item.addEventListener('click', function () {
+      historyItems.forEach(function (element) {
+        element.classList.remove('show');
+      });
+      var items = historySection.querySelectorAll("[data-row=\"".concat(item.dataset.row, "\"]"));
+      items.forEach(function (element) {
+        !element.classList.contains('show') ? element.classList.add('show') : element.classList.remove('show');
+      });
+    });
+  });
+  document.body.addEventListener('click', function (evt) {
+    if (evt.target.dataset.family !== 'history') {
+      historyItems.forEach(function (element) {
+        element.classList.remove('show');
+      });
+      historySection.classList.add('hidden');
     }
-  }; // remove all
-
-
-  body.onclick = function (e) {
-    if (e.target.dataset.family != 'history') {
-      initialHiddens();
-      initialShows();
-    }
-  }; //* histories start
-  //* company in numbers start
-
+  }); //* company in numbers start
 
   $('.company-carousel').owlCarousel({
     loop: true,
