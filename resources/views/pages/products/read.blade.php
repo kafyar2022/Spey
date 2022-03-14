@@ -155,14 +155,7 @@
                 {{ __('Read more') }}
               </div>
             </div>
-            <div class="instruction-dropdown-content" data-type="dropdown-content">
-              @if ($product->recipe)
-                {{ __('Medicine with prescription') }}
-              @endif
-              @if (!$product->recipe)
-                {{ __('Medicine without prescription') }}
-              @endif
-            </div>
+            <div class="instruction-dropdown-content" data-type="dropdown-content">{!! $product->method !!}</div>
           </li>
         </ul>
       </div>
@@ -216,13 +209,34 @@
     </section>
     <section class="similar-products">
       <h2 class="title similar-products-title">{{ __('Similar products') }}</h2>
-      <div class="owl-carousel products-carousel">
-        @foreach ($similarProducts as $product)
-          <div class="products-carousel__item">
-            <x-products-card :product="$product" />
-          </div>
-        @endforeach
-      </div>
+      @if ($similarProducts->count() > 4)
+        <div class="owl-carousel products-carousel">
+          @foreach ($similarProducts as $prod)
+            @if ($prod->id != $product->id)
+              <div class="products-carousel__item">
+                <x-products-card :product="$prod" />
+              </div>
+            @endif
+          @endforeach
+        </div>
+      @else
+        <div class="container">
+
+          @if ($similarProducts->count() == 1)
+            <p>{{ __('No similar products') }}</p>
+          @else
+            <ul>
+              @foreach ($similarProducts as $prod)
+                @if ($prod->id != $product->id)
+                  <li>
+                    <x-products-card :product="$prod" />
+                  </li>
+                @endif
+              @endforeach
+            </ul>
+          @endif
+        </div>
+      @endif
     </section>
   </main>
 @endsection

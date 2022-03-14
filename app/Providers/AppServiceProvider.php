@@ -55,7 +55,7 @@ class AppServiceProvider extends ServiceProvider
         'route',
       )->get();
       //! header data <<=
-      //! =>> footer data 
+      //! =>> footer data
       $footer = new stdClass;
 
       $footer->products = ProductsCategory::select(
@@ -82,7 +82,7 @@ class AppServiceProvider extends ServiceProvider
         'id',
         $locale . '_address as address',
         'email',
-      )->find(11);
+      )->find(7);
 
       $title = App::currentLocale() . '_title';
 
