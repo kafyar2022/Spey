@@ -17,7 +17,7 @@
     <body class="body">
         <div class="modal modal--fail {{session()->has('fail') ? '' : 'hidden'}}">{{session()->get('fail')}}</div>
         <div class="modal modal--success {{session()->has('success') ? '' : 'hidden'}}">{{session()->get('success')}}</div>
-        
+
         @if ($errors->any())
             <div class="modal modal--fail">
                 <ul class="form-errors">
@@ -29,7 +29,7 @@
         @endif
 
         @include('dashboard.layouts.sidebar')
-        
+
         @yield('content')
 
         <!-- JQuery 3.6  -->
