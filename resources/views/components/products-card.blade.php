@@ -17,8 +17,8 @@
       </span>
       {{ __('View product') }}
     </div>
-    <span class="product-card__category-icon" data-type="product-card">
-      {!! $product->category->icon !!}
-    </span>
+    <div class="product-card__category-icon" data-type="product-card">
+      <span style="{{'background-image: url(../img/product-icons/' . $product->icon . ')'}}"></span>
+    </div>
   </div>
 </a>

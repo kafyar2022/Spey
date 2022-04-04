@@ -71,6 +71,61 @@
           </label>
         </div>
       </div>
+      <p>Выберите иконку:</p>
+      <ul class="product-icon-list">
+        <li class="product-icon-item">
+          <input id="ampulse" class="visually-hidden" type="radio" name="icon" value="ampulse.svg">
+          <label for="ampulse"></label>
+        </li>
+        <li class="product-icon-item">
+          <input id="capsules" class="visually-hidden" type="radio" name="icon" value="capsules.svg">
+          <label for="capsules"></label>
+        </li>
+        <li class="product-icon-item">
+          <input id="cream" class="visually-hidden" type="radio" name="icon" value="cream.svg">
+          <label for="cream"></label>
+        </li>
+        <li class="product-icon-item">
+          <input id="draje" class="visually-hidden" type="radio" name="icon" value="draje.svg">
+          <label for="draje"></label>
+        </li>
+        <li class="product-icon-item">
+          <input id="drops" class="visually-hidden" type="radio" name="icon" value="drops.svg">
+          <label for="drops"></label>
+        </li>
+        <li class="product-icon-item">
+          <input id="gel" class="visually-hidden" type="radio" name="icon" value="gel.svg">
+          <label for="gel"></label>
+        </li>
+        <li class="product-icon-item">
+          <input id="injuction" class="visually-hidden" type="radio" name="icon" value="injuction.svg">
+          <label for="injuction"></label>
+        </li>
+        <li class="product-icon-item">
+          <input id="mix" class="visually-hidden" type="radio" name="icon" value="mix.svg">
+          <label for="mix"></label>
+        </li>
+        <li class="product-icon-item">
+          <input id="sprey-2" class="visually-hidden" type="radio" name="icon" value="sprey-2.svg">
+          <label for="sprey-2"></label>
+        </li>
+        <li class="product-icon-item">
+          <input id="sprey" class="visually-hidden" type="radio" name="icon" value="sprey.svg">
+          <label for="sprey"></label>
+        </li>
+        <li class="product-icon-item">
+          <input id="suspension" class="visually-hidden" type="radio" name="icon" value="suspension.svg">
+          <label for="suspension"></label>
+        </li>
+        <li class="product-icon-item">
+          <input id="syrop" class="visually-hidden" type="radio" name="icon" value="syrop.svg">
+          <label for="syrop"></label>
+        </li>
+        <li class="product-icon-item">
+          <input id="tablets" class="visually-hidden" type="radio" name="icon" value="tablets.svg">
+          <label for="tablets"></label>
+        </li>
+      </ul>
       <label class="form-label form-label-textarea">Состав на русском:
         <textarea class="simditor-textarea" name="ru-composition">{{ old('ru-composition') }}</textarea>
       </label>
