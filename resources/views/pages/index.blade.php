@@ -57,7 +57,7 @@
           @foreach ($data->productsCategories as $category)
             <li class="products-categories-item">
               <a class="products-categories-link" href="{{ route('products') }}?category={{ $category->id }}#products">
-                <div class="products-categories-icon">{!! $category->icon !!}</div>
+                {{-- <div class="products-categories-icon">{!! $category->icon !!}</div> --}}
                 <span class="products-categories-title">{!! $category->title !!}</span>
                 <div class="view-more">
                   <span class="view-more-icon">

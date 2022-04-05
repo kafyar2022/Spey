@@ -1571,7 +1571,6 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .products-categories-link {
-  margin-left: 24px;
   width: calc(100% - 24px);
   background-color: #fff;
   border-radius: 16px;
@@ -1833,6 +1832,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 
 /*! adaptive end */
+
 /** our histories section start */
 
 .our-history {
