@@ -5,7 +5,7 @@ var __webpack_exports__ = {};
 /*!******************************************!*\
   !*** ./resources/js/dashboard/master.js ***!
   \******************************************/
-//! Ajax request setup 
+//! Ajax request setup
 $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -90,6 +90,23 @@ if (productsCreate) {
       toolbarFloat: false
     });
   }
+
+  var imgChooserElement = document.querySelector('input[name="img"]');
+  var imgPreviewElement = document.querySelector('.form-label--img img');
+  imgChooserElement.addEventListener('change', function (evt) {
+    var file = evt.target.files[0];
+    imgPreviewElement.src = URL.createObjectURL(file);
+  });
+  var ruInstructionElement = document.querySelector('input[name="ru-instruction"]');
+  var ruInstructionPreviewElement = document.querySelector('.ru-instruction-preview');
+  ruInstructionElement.addEventListener('change', function (evt) {
+    ruInstructionPreviewElement.textContent = evt.target.value;
+  });
+  var enInstructionElement = document.querySelector('input[name="en-instruction"]');
+  var enInstructionPreviewElement = document.querySelector('.en-instruction-preview');
+  enInstructionElement.addEventListener('change', function (evt) {
+    enInstructionPreviewElement.textContent = evt.target.value;
+  });
 }
 })();
 
@@ -140,6 +157,23 @@ if (productsUpdate) {
       confirmModal.classList.add('hidden');
     }
   }); //* confirm-modal end
+
+  var imgChooserElement = document.querySelector('input[name="img"]');
+  var imgPreviewElement = document.querySelector('.form-label--img img');
+  imgChooserElement.addEventListener('change', function (evt) {
+    var file = evt.target.files[0];
+    imgPreviewElement.src = URL.createObjectURL(file);
+  });
+  var ruInstructionElement = document.querySelector('input[name="ru-instruction"]');
+  var ruInstructionPreviewElement = document.querySelector('.ru-instruction-preview');
+  ruInstructionElement.addEventListener('change', function (evt) {
+    ruInstructionPreviewElement.textContent = evt.target.value;
+  });
+  var enInstructionElement = document.querySelector('input[name="en-instruction"]');
+  var enInstructionPreviewElement = document.querySelector('.en-instruction-preview');
+  enInstructionElement.addEventListener('change', function (evt) {
+    enInstructionPreviewElement.textContent = evt.target.value;
+  });
 }
 })();
 

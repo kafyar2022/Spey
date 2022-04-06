@@ -57,14 +57,17 @@
       <label class="form-label">Название продукта на английском
         <input class="form-input" type="text" name="en-title" value="{{ old('en-title') == '' ? $product->en_title : old('en-title') }}">
       </label>
-      <label class="form-label">Выберите картинку для продукта
-        <input class="form-input" type="file" name="img">
+      <label class="form-label form-label--img">Выберите картинку для продукта
+        <input class="form-input form-input--file" type="file" name="img">
+        <img src="{{ $product->img ? asset('img/products/' . $product->img) : asset('img/default.png') }}" height="300" alt="{{ $product->title }}">
       </label>
-      <label class="form-label">Инструкция на русском
-        <input class="form-input" type="file" name="ru-instruction">
+      <label class="form-label form-label--file">Инструкция на русском
+        <input class="form-input form-input--file" type="file" name="ru-instruction">
+        <span class="ru-instruction-preview">{{ $product->ru_instruction ? $product->ru_instruction : 'Выберите файл...' }}</span>
       </label>
-      <label class="form-label">Инструкция на английском
-        <input class="form-input" type="file" name="en-instruction">
+      <label class="form-label form-label--file">Инструкция на английском
+        <input class="form-input form-input--file" type="file" name="en-instruction">
+        <span class="en-instruction-preview">{{ $product->en_instruction ? $product->en_instruction : 'Выберите файл...' }}</span>
       </label>
       <div class="form-item">
         Тип лекарства:
@@ -80,55 +83,55 @@
       <p>Выберите иконку:</p>
       <ul class="product-icon-list">
         <li class="product-icon-item">
-          <input id="ampulse" class="visually-hidden" type="radio" name="icon" value="ampulse.svg">
+          <input id="ampulse" class="visually-hidden" type="radio" name="icon" value="ampulse.svg" {{ $product->icon == 'ampulse.svg' ? 'checked' : '' }}>
           <label for="ampulse"></label>
         </li>
         <li class="product-icon-item">
-          <input id="capsules" class="visually-hidden" type="radio" name="icon" value="capsules.svg">
+          <input id="capsules" class="visually-hidden" type="radio" name="icon" value="capsules.svg" {{ $product->icon == 'capsules.svg' ? 'checked' : '' }}>
           <label for="capsules"></label>
         </li>
         <li class="product-icon-item">
-          <input id="cream" class="visually-hidden" type="radio" name="icon" value="cream.svg">
+          <input id="cream" class="visually-hidden" type="radio" name="icon" value="cream.svg" {{ $product->icon == 'cream.svg' ? 'checked' : '' }}>
           <label for="cream"></label>
         </li>
         <li class="product-icon-item">
-          <input id="draje" class="visually-hidden" type="radio" name="icon" value="draje.svg">
+          <input id="draje" class="visually-hidden" type="radio" name="icon" value="draje.svg" {{ $product->icon == 'draje.svg' ? 'checked' : '' }}>
           <label for="draje"></label>
         </li>
         <li class="product-icon-item">
-          <input id="drops" class="visually-hidden" type="radio" name="icon" value="drops.svg">
+          <input id="drops" class="visually-hidden" type="radio" name="icon" value="drops.svg" {{ $product->icon == 'drops.svg' ? 'checked' : '' }}>
           <label for="drops"></label>
         </li>
         <li class="product-icon-item">
-          <input id="gel" class="visually-hidden" type="radio" name="icon" value="gel.svg">
+          <input id="gel" class="visually-hidden" type="radio" name="icon" value="gel.svg" {{ $product->icon == 'gel.svg' ? 'checked' : '' }}>
           <label for="gel"></label>
         </li>
         <li class="product-icon-item">
-          <input id="injuction" class="visually-hidden" type="radio" name="icon" value="injuction.svg">
+          <input id="injuction" class="visually-hidden" type="radio" name="icon" value="injuction.svg" {{ $product->icon == 'injuction.svg' ? 'checked' : '' }}>
           <label for="injuction"></label>
         </li>
         <li class="product-icon-item">
-          <input id="mix" class="visually-hidden" type="radio" name="icon" value="mix.svg">
+          <input id="mix" class="visually-hidden" type="radio" name="icon" value="mix.svg" {{ $product->icon == 'mix.svg' ? 'checked' : '' }}>
           <label for="mix"></label>
         </li>
         <li class="product-icon-item">
-          <input id="sprey-2" class="visually-hidden" type="radio" name="icon" value="sprey-2.svg">
+          <input id="sprey-2" class="visually-hidden" type="radio" name="icon" value="sprey-2.svg" {{ $product->icon == '2.svg' ? 'checked' : '' }}>
           <label for="sprey-2"></label>
         </li>
         <li class="product-icon-item">
-          <input id="sprey" class="visually-hidden" type="radio" name="icon" value="sprey.svg">
+          <input id="sprey" class="visually-hidden" type="radio" name="icon" value="sprey.svg" {{ $product->icon == 'sprey.svg' ? 'checked' : '' }}>
           <label for="sprey"></label>
         </li>
         <li class="product-icon-item">
-          <input id="suspension" class="visually-hidden" type="radio" name="icon" value="suspension.svg">
+          <input id="suspension" class="visually-hidden" type="radio" name="icon" value="suspension.svg" {{ $product->icon == 'suspension.svg' ? 'checked' : '' }}>
           <label for="suspension"></label>
         </li>
         <li class="product-icon-item">
-          <input id="syrop" class="visually-hidden" type="radio" name="icon" value="syrop.svg">
+          <input id="syrop" class="visually-hidden" type="radio" name="icon" value="syrop.svg" {{ $product->icon == 'syrop.svg' ? 'checked' : '' }}>
           <label for="syrop"></label>
         </li>
         <li class="product-icon-item">
-          <input id="tablets" class="visually-hidden" type="radio" name="icon" value="tablets.svg">
+          <input id="tablets" class="visually-hidden" type="radio" name="icon" value="tablets.svg" {{ $product->icon == 'tablets.svg' ? 'checked' : '' }}>
           <label for="tablets"></label>
         </li>
       </ul>
