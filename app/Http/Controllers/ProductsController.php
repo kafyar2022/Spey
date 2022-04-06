@@ -88,9 +88,9 @@ class ProductsController extends Controller
     // validation
     $request->validate([
       'category-id' => 'required',
-      'ru-title' => 'required',
-      'en-title' => 'required',
-      'img' => 'required|mimes:png|max:1000',
+      'ru-title' => 'required|unique:products,ru_title',
+      'en-title' => 'required|unique:products,en_title',
+      'img' => 'mimes:png|max:1000',
       'ru-instruction' => 'required',
       'recipe' => 'required',
     ]);
@@ -100,18 +100,20 @@ class ProductsController extends Controller
       $request->recipe = false;
     }
     // save image file
-    $img = $request->file('img');
-    $imgName = uniqid() . '.' . $img->getClientOriginalExtension();
-    $path = public_path('img/products');
-    $img->move($path, $imgName);
+    if ($request->file('img')) {
+      $img = $request->file('img');
+      $imgName = uniqid() . '.' . $img->getClientOriginalExtension();
+      $path = public_path('img/products');
+      $img->move($path, $imgName);
+    }
     // save instruction files
     $ruInstruction = $request->file('ru-instruction');
     $enInstruction = $request->file('en-instruction');
-    $ruInstructionName = uniqid() . '.' . $ruInstruction->getClientOriginalExtension();
+    $ruInstructionName = strtolower($request->input('ru-title')) . '-ru.' . $ruInstruction->getClientOriginalExtension();
     $path = public_path('files');
     $ruInstruction->move($path, $ruInstructionName);
     if ($enInstruction) {
-      $enInstructionName = uniqid() . '.' . $enInstruction->getClientOriginalExtension();
+      $enInstructionName = strtolower($request->input('en-title')) . '-en.' . $enInstruction->getClientOriginalExtension();
       $enInstruction->move($path, $enInstructionName);
     }
     // create new product
@@ -131,7 +133,7 @@ class ProductsController extends Controller
     $request->input('ru-method') ? $product->ru_method = $request->input('ru-method') : '';
     $request->icon ? $product->icon = $request->icon : '';
     $product->recipe = $request->recipe;
-    $product->img = $imgName;
+    $request->file('img') ? $product->img = $imgName : '';
     $save = $product->save();
 
     if ($save) {
@@ -146,8 +148,8 @@ class ProductsController extends Controller
     // validation
     $request->validate([
       'category-id' => 'required',
-      'ru-title' => 'required',
-      'en-title' => 'required',
+      'ru-title' => "required|unique:products,ru_title,{$request->id}",
+      'en-title' => "required|unique:products,en_title,{$request->id}",
       'recipe' => 'required',
     ]);
     if ($request->file('img')) {
@@ -186,7 +188,7 @@ class ProductsController extends Controller
       }
       // save new ru_instruction
       $ruInstruction = $request->file('ru-instruction');
-      $ruInstructionName = uniqid() . '.' . $ruInstruction->getClientOriginalExtension();
+      $ruInstructionName = strtolower($request->input('ru-title')) . '-ru.' . $ruInstruction->getClientOriginalExtension();
       $path = public_path('files');
       $ruInstruction->move($path, $ruInstructionName);
       // update product's ru_instruction
@@ -194,13 +196,15 @@ class ProductsController extends Controller
     }
     if ($request->file('en-instruction')) {
       // delete previous ru_instruction
-      $path = public_path('files/' . $product->en_instruction);
-      if (file_exists($path)) {
-        unlink($path);
+      if ($product->en_instruction) {
+        $path = public_path('files/' . $product->en_instruction);
+        if (file_exists($path)) {
+          unlink($path);
+        }
       }
       // save new ru_instruction
       $enInstruction = $request->file('en-instruction');
-      $enInstructionName = uniqid() . '.' . $enInstruction->getClientOriginalExtension();
+      $enInstructionName = strtolower($request->input('en-title')) . '-en.' . $enInstruction->getClientOriginalExtension();
       $path = public_path('files');
       $enInstruction->move($path, $enInstructionName);
       // update product's ru_instruction

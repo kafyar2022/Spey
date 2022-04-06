@@ -57,17 +57,19 @@
       <label class="form-label">Название продукта на английском
         <input class="form-input" type="text" name="en-title" value="{{ old('en-title') == '' ? $product->en_title : old('en-title') }}">
       </label>
-      <label class="form-label form-label--img">Выберите картинку для продукта
-        <input class="form-input form-input--file" type="file" name="img">
-        <img src="{{ $product->img ? asset('img/products/' . $product->img) : asset('img/default.png') }}" height="300" alt="{{ $product->title }}">
-      </label>
+      <div class="form-item-img">
+        <label for="img" class="form-label form-label--img">Выберите картинку для продукта</label>
+        <input class="form-input form-input--file" id="img" type="file" name="img" accept="image/png">
+        <img class="form-img" src="{{ $product->img ? asset('img/products/' . $product->img) : asset('img/default.png') }}" height="300" alt="Выберите картинку для продукта">
+        <label class="img-button" for="img">Редактировать картинку</label>
+      </div>
       <label class="form-label form-label--file">Инструкция на русском
         <input class="form-input form-input--file" type="file" name="ru-instruction">
-        <span class="ru-instruction-preview">{{ $product->ru_instruction ? $product->ru_instruction : 'Выберите файл...' }}</span>
+        <span class="ru-instruction-preview">{{ $product->ru_instruction ? $product->ru_instruction : 'Выбрать файл' }}</span>
       </label>
       <label class="form-label form-label--file">Инструкция на английском
         <input class="form-input form-input--file" type="file" name="en-instruction">
-        <span class="en-instruction-preview">{{ $product->en_instruction ? $product->en_instruction : 'Выберите файл...' }}</span>
+        <span class="en-instruction-preview">{{ $product->en_instruction ? $product->en_instruction : 'Выбрать файл' }}</span>
       </label>
       <div class="form-item">
         Тип лекарства:

@@ -28,7 +28,7 @@ if (productsCreate) {
   }
 
   const imgChooserElement = document.querySelector('input[name="img"]');
-  const imgPreviewElement = document.querySelector('.form-label--img img');
+  const imgPreviewElement = document.querySelector('.form-img');
 
   imgChooserElement.addEventListener('change', (evt) => {
     const file = evt.target.files[0];

@@ -92,7 +92,7 @@ if (productsCreate) {
   }
 
   var imgChooserElement = document.querySelector('input[name="img"]');
-  var imgPreviewElement = document.querySelector('.form-label--img img');
+  var imgPreviewElement = document.querySelector('.form-img');
   imgChooserElement.addEventListener('change', function (evt) {
     var file = evt.target.files[0];
     imgPreviewElement.src = URL.createObjectURL(file);
@@ -159,7 +159,7 @@ if (productsUpdate) {
   }); //* confirm-modal end
 
   var imgChooserElement = document.querySelector('input[name="img"]');
-  var imgPreviewElement = document.querySelector('.form-label--img img');
+  var imgPreviewElement = document.querySelector('.form-img');
   imgChooserElement.addEventListener('change', function (evt) {
     var file = evt.target.files[0];
     imgPreviewElement.src = URL.createObjectURL(file);

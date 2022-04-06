@@ -51,17 +51,19 @@
       <label class="form-label">Название продукта на английском
         <input class="form-input" type="text" name="en-title" value="{{ old('en-title') }}">
       </label>
-      <label class="form-label form-label--img">Выберите картинку для продукта
-        <input class="form-input form-input--file" type="file" name="img">
-        <img src="{{ asset('img/default.png') }}" height="300" alt="Выберите картинку для продукта">
-      </label>
+      <div class="form-item-img">
+        <label for="img" class="form-label form-label--img">Выберите картинку для продукта</label>
+        <input class="form-input form-input--file" id="img" type="file" name="img" accept="image/png">
+        <img class="form-img" src="{{ asset('img/default.png') }}" height="300" alt="Выберите картинку для продукта">
+        <label class="img-button" for="img">Выбрать картинку</label>
+      </div>
       <label class="form-label form-label--file">Инструкция на русском
         <input class="form-input form-input--file" type="file" name="ru-instruction">
-        <span class="ru-instruction-preview">Выберите файл...</span>
+        <span class="ru-instruction-preview">Выбрать файл</span>
       </label>
       <label class="form-label form-label--file">Инструкция на английском
         <input class="form-input form-input--file" type="file" name="en-instruction">
-        <span class="en-instruction-preview">Выберите файл...</span>
+        <span class="en-instruction-preview">Выбрать файл</span>
       </label>
       <div class="form-item">
         Тип лекарства:

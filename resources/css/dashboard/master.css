@@ -346,7 +346,8 @@ input[type="search"]::-webkit-search-results-decoration {
   align-items: flex-start;
   max-width: max-content;
 }
-.form-label--file span {
+.form-label--file span,
+.img-button {
   background-color: #e7e7e7;
   padding: 8px;
   border-radius: 5px;
