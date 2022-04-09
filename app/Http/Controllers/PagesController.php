@@ -58,6 +58,7 @@ class PagesController extends Controller
       $newsCategory->new = $newsCategory->news()->select(
         'id',
         $locale . '_title as title',
+        'slug',
         'view_rate',
         'trashed'
       )->where('trashed', false)->orderBy('view_rate')->first();
@@ -90,6 +91,7 @@ class PagesController extends Controller
       'id',
       'category_id',
       $locale . '_title as title',
+      'slug',
       'img',
       'view_rate',
       'recipe',
@@ -220,6 +222,7 @@ class PagesController extends Controller
         'id',
         'category_id',
         $locale . '_title as title',
+        'slug',
         'img',
         'icon',
         'view_rate',
@@ -244,6 +247,7 @@ class PagesController extends Controller
         'id',
         'category_id',
         $locale . '_title as title',
+        'slug',
         'img',
         'icon',
         'view_rate',
@@ -260,7 +264,7 @@ class PagesController extends Controller
       return view('pages.products.index', compact('data', 'page'));
     }
   }
-  public function productsRead($id)
+  public function productsRead($slug)
   {
     $locale = App::currentLocale();
     // Get product
@@ -268,6 +272,7 @@ class PagesController extends Controller
       'id',
       'category_id',
       $locale . '_title as title',
+      'slug',
       $locale . '_instruction as instruction',
       $locale . '_composition as composition',
       $locale . '_indications as indications',
@@ -276,7 +281,7 @@ class PagesController extends Controller
       'view_rate',
       'recipe',
       'img',
-    )->find($id);
+    )->where('slug', $slug)->first();
     // increase view rate
     $product->view_rate++;
     $product->save();
@@ -297,6 +302,7 @@ class PagesController extends Controller
       'id',
       'category_id',
       $locale . '_title as title',
+      'slug',
       'img',
       'icon',
       'view_rate',
@@ -318,6 +324,7 @@ class PagesController extends Controller
       'id',
       'category_id',
       $locale . '_title as title',
+      'slug',
       'view_rate',
       'img',
       'trashed',
@@ -365,7 +372,7 @@ class PagesController extends Controller
       return view('pages.news.index', compact('data', 'page'));
     }
   }
-  public function newsRead($id)
+  public function newsRead($slug)
   {
     $locale = App::currentLocale();
 
@@ -373,10 +380,11 @@ class PagesController extends Controller
       'id',
       'category_id',
       $locale . '_title as title',
+      'slug',
       $locale . '_text as text',
       'view_rate',
       'img',
-    )->where('id', $id)->first();
+    )->where('slug', $slug)->first();
     // increase view rate
     $news->view_rate++;
     $news->save();

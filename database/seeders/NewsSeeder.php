@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\News;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
@@ -85,19 +86,20 @@ class NewsSeeder extends Seeder
             array(
                 'id' => 12,
                 'category_id' => 4,
-                'en_title' => 'Russia prepares to create vaccines that can be quickly changed',
+                'en_title' => 'Russia prepares to create vaccines that can be quickly changed ',
                 'ru_title' => 'Россия готовится создавать вакцины, состав которых можно быстро менять',
             ),
         );
         foreach ($industryNews as $news) {
-            $industryNew = new News;
-            $industryNew->category_id = $news['category_id'];
-            $industryNew->en_title = $news['en_title'];
-            $industryNew->ru_title = $news['ru_title'];
-            $industryNew->ru_text = "<p>«ФАС России удовлетворила ходатайство ООО “Агропромышленный комплекс “Мираторг” о даче предварительного согласия на приобретение доли в размере 50% в уставном капитале ООО “Гепаринус”, зарегистрированного в Курской области и входящего в группу компаний Van Hessen Group (Германия)», – говорится в сообщении ФАС, которое приводит издание.</p><p>В конце июня стало известно, что «Мираторг» подал соответствующую заявку в антимонопольное ведомство, планируя создать совместное предприятие по выпуску сырья для гепарина. Это вещество, получаемое из слизистой желудочно-кишечного тракта свиней, служит основой для лекарств, которые препятствуют образованию тромбов.</p><p>За время пандемии коронавирусной инфекции спрос на них вырос на 30%, по данным аналитиков. Однако до сих пор собственных субстанций для гепарина у России не было – еще недавно они все были привозными. К примеру, за 2020 год в страну доставили 20 тонн гепаринового сырья из-за границы, в основном из Китая, подсчитала компания RNC Pharma</p><p>Теперь же у России появится возможность выпускать собственное сырье для жизненно-важных препаратов. До сих пор владельцем 100% уставного капитала «Гепаринуса» был нидерландский концерн Van Hessen – поставщик&nbsp; субпродуктов из мяса, а также компонентов для фармацевтической отрасли, к которым относится основа для гепарина.</p>";
-            $industryNew->en_text = "<p>The biotech compound created by AstraZeneca, AZD7442, houses antibodies in a long-acting antibody combination for prophylaxis of symptomatic COVID-19. It is designed to contain the virus if someone becomes infected, which is different from COVID-19 vaccines that use the immune system of an individual to produce antibodies and cells that can fight off the virus.<br></p><p>Filing for the Emergency Use Authorization, the company has included data from its PROVENT Phase III trial, which showed a 77% reduction in risk of developing symptomatic COVID-19 without the need for a vaccine.</p><p>The therapy treatment, taken via two injections, could provide protection to those without a strong enough immune response to COVID-19 vaccines. It is designed to be effective for close to a year, providing protection from the virus.</p>";
-            $industryNew->view_rate = Faker::create()->numberBetween($min = 0, $max = 30);
-            $industryNew->save();
+            $table = new News;
+            $table->category_id = $news['category_id'];
+            $table->en_title = $news['en_title'];
+            $table->ru_title = $news['ru_title'];
+            $table->slug = SlugService::createSlug(News::class, 'slug', $news['ru_title']);
+            $table->ru_text = "<p>«ФАС России удовлетворила ходатайство ООО “Агропромышленный комплекс “Мираторг” о даче предварительного согласия на приобретение доли в размере 50% в уставном капитале ООО “Гепаринус”, зарегистрированного в Курской области и входящего в группу компаний Van Hessen Group (Германия)», – говорится в сообщении ФАС, которое приводит издание.</p><p>В конце июня стало известно, что «Мираторг» подал соответствующую заявку в антимонопольное ведомство, планируя создать совместное предприятие по выпуску сырья для гепарина. Это вещество, получаемое из слизистой желудочно-кишечного тракта свиней, служит основой для лекарств, которые препятствуют образованию тромбов.</p><p>За время пандемии коронавирусной инфекции спрос на них вырос на 30%, по данным аналитиков. Однако до сих пор собственных субстанций для гепарина у России не было – еще недавно они все были привозными. К примеру, за 2020 год в страну доставили 20 тонн гепаринового сырья из-за границы, в основном из Китая, подсчитала компания RNC Pharma</p><p>Теперь же у России появится возможность выпускать собственное сырье для жизненно-важных препаратов. До сих пор владельцем 100% уставного капитала «Гепаринуса» был нидерландский концерн Van Hessen – поставщик&nbsp; субпродуктов из мяса, а также компонентов для фармацевтической отрасли, к которым относится основа для гепарина.</p>";
+            $table->en_text = "<p>The biotech compound created by AstraZeneca, AZD7442, houses antibodies in a long-acting antibody combination for prophylaxis of symptomatic COVID-19. It is designed to contain the virus if someone becomes infected, which is different from COVID-19 vaccines that use the immune system of an individual to produce antibodies and cells that can fight off the virus.<br></p><p>Filing for the Emergency Use Authorization, the company has included data from its PROVENT Phase III trial, which showed a 77% reduction in risk of developing symptomatic COVID-19 without the need for a vaccine.</p><p>The therapy treatment, taken via two injections, could provide protection to those without a strong enough immune response to COVID-19 vaccines. It is designed to be effective for close to a year, providing protection from the virus.</p>";
+            $table->view_rate = Faker::create()->numberBetween($min = 0, $max = 30);
+            $table->save();
         }
     }
 }

@@ -26,9 +26,9 @@ Route::get('/localization', [MainController::class, 'setLocale'])->name('localiz
 Route::get('/', [PagesController::class, 'index'])->name('home');
 Route::get('/about', [PagesController::class, 'about'])->name('about');
 Route::get('/products', [PagesController::class, 'products'])->name('products');
-Route::get('/products/{id}', [PagesController::class, 'productsRead'])->name('products.read');
+Route::get('/products/{slug}', [PagesController::class, 'productsRead'])->name('products.read');
 Route::get('/news', [PagesController::class, 'news'])->name('news');
-Route::get('/news/read/{id}', [PagesController::class, 'newsRead'])->name('news.read');
+Route::get('/news/read/{slug}', [PagesController::class, 'newsRead'])->name('news.read');
 Route::get('/contacts', [PagesController::class, 'contacts'])->name('contacts');
 // Products' routes
 Route::post('/products/search', [ProductsController::class, 'search'])->name('products.search');
@@ -39,10 +39,10 @@ Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout
 // search route
 Route::get('/search', [MainController::class, 'search']);
 
-Route::group(['middleware' => ['AuthCheck']], function () {
+// Route::group(['middleware' => ['AuthCheck']], function () {
   Route::get('/auth/login', [AuthController::class, 'login'])->name('auth.login');
 
-  Route::group(['middleware' => ['AdminCheck']], function () {
+  // Route::group(['middleware' => ['AdminCheck']], function () {
     // dashboard pages
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/products/create', [DashboardController::class, 'productsCreate'])->name('dashboard.products.create');
@@ -81,5 +81,5 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::post('/histories/update', [HistoriesController::class, 'update'])->name('histories.update');
     Route::post('/histories/delete', [HistoriesController::class, 'delete'])->name('histories.delete');
     Route::get('/dashboard/histories/search', [HistoriesController::class, 'dashSearch'])->name('dashboard.histories.search');
-  });
-});
+  // });
+// });

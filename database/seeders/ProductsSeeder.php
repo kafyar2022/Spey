@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
@@ -84,8 +85,9 @@ class ProductsSeeder extends Seeder
     foreach ($products as $product) {
       $speyProduct = new Product;
       $speyProduct->category_id = $product['category_id'];
-      $speyProduct->en_title = $faker->unique()->word();
-      $speyProduct->ru_title = $faker->unique()->word();
+      $speyProduct->en_title = $product['en_title'];
+      $speyProduct->ru_title = $product['ru_title'];
+      $speyProduct->slug = SlugService::createSlug(Product::class, 'slug', $product['ru_title']);
       $speyProduct->en_instruction = 'en_instruction.pdf';
       $speyProduct->ru_instruction = 'ru_instruction.pdf';
       $speyProduct->en_composition = '<p>Each sachet contains:</p><br><b>Active ingredients:</b><br><br><p>Bifidobacteria BB-12® 1.0 billion CFU**<br>Streptococcus thermophilic 1.0 billion CFU**<br>Inulin 25 mg</p><br><p>Amount of Bacteria present at the time of manufacture.</p><br><p><b>Excipients:</b> crystalline glucose.</p>';
