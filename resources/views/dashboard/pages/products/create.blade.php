@@ -35,7 +35,7 @@
     </li>
   </ul>
   <main class="products-create-page">
-    <form class="form" action="{{ route('products.create') }}" method="POST" enctype="multipart/form-data">
+    <form class="form" action="{{ route('products.create') }}" method="post" enctype="multipart/form-data">
       @csrf
       <fieldset class="form__element form__element--long form__element--photo">
         <legend class="form__label">Фотография продукта</legend>

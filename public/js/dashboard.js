@@ -153,6 +153,28 @@ if (productsUpdate) {
       toolbarFloat: false
     });
   }
+
+  var photoChooserEl = document.querySelector('input[name="photo"]');
+  var photoPreviewEl = document.querySelector('.form__photo-preview');
+  var ruInstructionChooserEl = document.querySelector('input[name="ru-instruction"]');
+  var ruInstructionDeleteEl = document.querySelector('button[data-action="delete-ru-instruction"]');
+  var ruInstructionDeletedEl = document.querySelector('input[name="ru-instruction-deleted"]');
+  var ruInstructionPreviewEl = document.querySelector('[data-instruction="ru"]');
+  var enInstructionChooserEl = document.querySelector('input[name="en-instruction"]');
+  var enInstructionPreviewEl = document.querySelector('[data-instruction="en"]');
+  var enInstructionDeleteEl = document.querySelector('button[data-action="delete-en-instruction"]');
+  var enInstructionDeletedEl = document.querySelector('input[name="en-instruction-deleted"]');
+  window.setPhotoPreview(photoChooserEl, photoPreviewEl);
+  window.setFilePreview(ruInstructionChooserEl, ruInstructionPreviewEl);
+  window.setFilePreview(enInstructionChooserEl, enInstructionPreviewEl);
+  ruInstructionDeleteEl.addEventListener('click', function () {
+    ruInstructionPreviewEl.textContent = 'Файл не выбран';
+    ruInstructionDeletedEl.checked = true;
+  });
+  enInstructionDeleteEl.addEventListener('click', function () {
+    enInstructionPreviewEl.textContent = 'Файл не выбран';
+    enInstructionDeletedEl.checked = true;
+  });
 }
 })();
 

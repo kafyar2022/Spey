@@ -28,4 +28,29 @@ if (productsUpdate) {
       toolbarFloat: false,
     });
   }
+
+  const photoChooserEl = document.querySelector('input[name="photo"]');
+  const photoPreviewEl = document.querySelector('.form__photo-preview');
+  const ruInstructionChooserEl = document.querySelector('input[name="ru-instruction"]');
+  const ruInstructionDeleteEl = document.querySelector('button[data-action="delete-ru-instruction"]');
+  const ruInstructionDeletedEl = document.querySelector('input[name="ru-instruction-deleted"]');
+  const ruInstructionPreviewEl = document.querySelector('[data-instruction="ru"]');
+  const enInstructionChooserEl = document.querySelector('input[name="en-instruction"]');
+  const enInstructionPreviewEl = document.querySelector('[data-instruction="en"]');
+  const enInstructionDeleteEl = document.querySelector('button[data-action="delete-en-instruction"]');
+  const enInstructionDeletedEl = document.querySelector('input[name="en-instruction-deleted"]');
+
+  window.setPhotoPreview(photoChooserEl, photoPreviewEl);
+  window.setFilePreview(ruInstructionChooserEl, ruInstructionPreviewEl);
+  window.setFilePreview(enInstructionChooserEl, enInstructionPreviewEl);
+
+  ruInstructionDeleteEl.addEventListener('click', () => {
+    ruInstructionPreviewEl.textContent = 'Файл не выбран';
+    ruInstructionDeletedEl.checked = true;
+  });
+
+  enInstructionDeleteEl.addEventListener('click', () => {
+    enInstructionPreviewEl.textContent = 'Файл не выбран';
+    enInstructionDeletedEl.checked = true;
+  });
 }

@@ -37,145 +37,118 @@
   <main class="products-update-page">
     <form class="form" action="{{ route('products.update') }}" method="POST" enctype="multipart/form-data">
       @csrf
-      <input type="hidden" name="id" value="{{ $product->id }}">
-      <label class="form-label">Выберите категорию продукта
-        <select class="form-select" name="category-id">
-          @php
-            $old = old('category-id');
-            if ($old == '') {
-                $old = $product->category->id;
-            }
-          @endphp
+      <input type="hidden" name="product-id" value="{{ $product->id }}">
+      <fieldset class="form__element form__element--long form__element--photo">
+        <legend class="form__label">Фотография продукта</legend>
+        <img class="form__photo-preview {{ $product->img ? 'transparent-bg' : '' }}" src="{{ asset('img/products/' . $product->img) }}" alt="Фотография продукта" width="40" height="44">
+        <input class="form__photo-input visually-hidden" type="file" id="photo" name="photo" accept="image/*">
+        <label class="form__file-label" for="photo">Редактировать</label>
+      </fieldset>
+      <fieldset class="form__element form__element--long">
+        <legend class="form__label">Иконки для продукта</legend>
+        <input class="product-icon-input visually-hidden" id="gel" type="radio" name="icon" value="gel.svg" {{ $product->icon === 'gel.svg' ? 'checked' : '' }}>
+        <label class="product-icon product-icon--gel" for="gel">Гель</label>
+        <input class="product-icon-input visually-hidden" id="draje" type="radio" name="icon" value="draje.svg" {{ $product->icon === 'draje.svg' ? 'checked' : '' }}>
+        <label class="product-icon product-icon--draje" for="draje">Драже</label>
+        <input class="product-icon-input visually-hidden" id="drops" type="radio" name="icon" value="drops.svg" {{ $product->icon === 'drops.svg' ? 'checked' : '' }}>
+        <label class="product-icon product-icon--drops" for="drops">Капли</label>
+        <input class="product-icon-input visually-hidden" id="capsules" type="radio" name="icon" value="capsules.svg" {{ $product->icon === 'capsules.svg' ? 'checked' : '' }}>
+        <label class="product-icon product-icon--capsules" for="capsules">Капсулы</label>
+        <input class="product-icon-input visually-hidden" id="cream" type="radio" name="icon" value="cream.svg" {{ $product->icon === 'cream.svg' ? 'checked' : '' }}>
+        <label class="product-icon product-icon--cream" for="cream">Крем</label>
+        <input class="product-icon-input visually-hidden" id="mix" type="radio" name="icon" value="mix.svg" {{ $product->icon === 'mix.svg' ? 'checked' : '' }}>
+        <label class="product-icon product-icon--mix" for="mix">Раствор</label>
+        <input class="product-icon-input visually-hidden" id="syrop" type="radio" name="icon" value="syrop.svg" {{ $product->icon === 'syrop.svg' ? 'checked' : '' }}>
+        <label class="product-icon product-icon--syrop" for="syrop">Сироп</label>
+        <input class="product-icon-input visually-hidden" id="sprey" type="radio" name="icon" value="sprey.svg" {{ $product->icon === 'sprey.svg' ? 'checked' : '' }}>
+        <label class="product-icon product-icon--sprey" for="sprey">Спрей</label>
+        <input class="product-icon-input visually-hidden" id="suspension" type="radio" name="icon" value="suspension.svg" {{ $product->icon === 'suspension.svg' ? 'checked' : '' }}>
+        <label class="product-icon product-icon--suspension" for="suspension">Суспензия</label>
+        <input class="product-icon-input visually-hidden" id="tablets" type="radio" name="icon" value="tablets.svg" {{ $product->icon === 'tablets.svg' ? 'checked' : '' }}>
+        <label class="product-icon product-icon--tablets" for="tablets">Таблетки</label>
+        <input class="product-icon-input visually-hidden" id="injuction" type="radio" name="icon" value="injuction.svg" {{ $product->icon === 'injuction.svg' ? 'checked' : '' }}>
+        <label class="product-icon product-icon--injuction" for="injuction">Укол</label>
+        <input class="product-icon-input visually-hidden" id="ampulse" type="radio" name="icon" value="ampulse.svg" {{ $product->icon === 'ampulse.svg' ? 'checked' : '' }}>
+        <label class="product-icon product-icon--ampulse" for="ampulse">Ампулы</label>
+      </fieldset>
+      <fieldset class="form__element">
+        <label class="form__label" for="categories">Категория</label>
+        <select class="form__select" name="category-id" id="categories" required>
           @foreach ($categories as $category)
-            <option value="{{ $category->id }}" {{ $old == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
+            <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
           @endforeach
         </select>
-      </label>
-      <label class="form-label">Название продукта на русском
-        <input class="form-input" type="text" name="ru-title" value="{{ old('ru-title') == '' ? $product->ru_title : old('ru-title') }}">
-      </label>
-      <label class="form-label">Название продукта на английском
-        <input class="form-input" type="text" name="en-title" value="{{ old('en-title') == '' ? $product->en_title : old('en-title') }}">
-      </label>
-      <div class="form-item-img">
-        <label for="img" class="form-label form-label--img">Выберите картинку для продукта</label>
-        <input class="form-input form-input--file" id="img" type="file" name="img" accept="image/png">
-        <img class="form-img" src="{{ $product->img ? asset('img/products/' . $product->img) : asset('img/default.png') }}" height="300" alt="Выберите картинку для продукта">
-        <label class="img-button" for="img">Редактировать картинку</label>
-      </div>
-      <label class="form-label form-label--file">Инструкция на русском
-        <input class="form-input form-input--file" type="file" name="ru-instruction">
-        <span class="ru-instruction-preview">{{ $product->ru_instruction ? $product->ru_instruction : 'Выбрать файл' }}</span>
-      </label>
-      <label class="form-label form-label--file">Инструкция на английском
-        <input class="form-input form-input--file" type="file" name="en-instruction">
-        <span class="en-instruction-preview">{{ $product->en_instruction ? $product->en_instruction : 'Выбрать файл' }}</span>
-      </label>
-      <div class="form-item">
-        Тип лекарства:
-        <div class="form-item-content">
-          <label class="form-label form-label-radio">
-            <input class="form-input" type="radio" name="recipe" value="true" {{ $product->recipe == true ? 'checked' : '' }}> Рецептурный
-          </label>
-          <label class="form-label form-label-radio">
-            <input class="form-input" type="radio" name="recipe" value="false" {{ $product->recipe == false ? 'checked' : '' }}> Без рецепта
-          </label>
+      </fieldset>
+      <fieldset class="form__element">
+        <label class="form__label" for="prescription">Тип применения</label>
+        <select class="form__select" name="prescription" id="prescription" required>
+          <option value="1" {{ $product->recipe ? 'selected' : '' }}>Рецептурный</option>
+          <option value="0" {{ !$product->recipe ? 'selected' : '' }}>Без рецепта</option>
+        </select>
+      </fieldset>
+      <fieldset class="form__element">
+        <label class="form__label" for="ru-title">Название на русском</label>
+        <input class="form__input" type="text" name="ru-title" id="ru-title" placeholder="Лактоспей беби" autocomplete="off" required data-pristine-required-message="Объязательное поле" value="{{ $product->ru_title }}">
+      </fieldset>
+      <fieldset class="form__element">
+        <label class="form__label" for="en-title">Название на английском</label>
+        <input class="form__input" type="text" name="en-title" id="en-title" autocomplete="off" placeholder="Lactospey Baby" required data-pristine-required-message="Объязательное поле" value="{{ $product->en_title }}">
+      </fieldset>
+      <fieldset class="form__element form__element--file">
+        <legend class="form__label">Инструкция на русском</legend>
+        <p class="form__file-preview" data-instruction="ru">{{ $product->ru_instruction ? $product->ru_instruction : 'Файл не выбран' }}</p>
+        <div class="form-actions__wrap">
+          <label class="form-actions__edit" for="ru-instruction">Редактировать</label>
+          <input class="visually-hidden" id="ru-instruction" type="file" name="ru-instruction">
+          <button class="form-actions__delete" data-action="delete-ru-instruction" type="button">Удалить</button>
+          <input class="visually-hidden" type="checkbox" name="ru-instruction-deleted">
         </div>
-      </div>
-      <p>Выберите иконку:</p>
-      <ul class="product-icon-list">
-        <li class="product-icon-item">
-          <input id="ampulse" class="visually-hidden" type="radio" name="icon" value="ampulse.svg" {{ $product->icon == 'ampulse.svg' ? 'checked' : '' }}>
-          <label for="ampulse"></label>
-        </li>
-        <li class="product-icon-item">
-          <input id="capsules" class="visually-hidden" type="radio" name="icon" value="capsules.svg" {{ $product->icon == 'capsules.svg' ? 'checked' : '' }}>
-          <label for="capsules"></label>
-        </li>
-        <li class="product-icon-item">
-          <input id="cream" class="visually-hidden" type="radio" name="icon" value="cream.svg" {{ $product->icon == 'cream.svg' ? 'checked' : '' }}>
-          <label for="cream"></label>
-        </li>
-        <li class="product-icon-item">
-          <input id="draje" class="visually-hidden" type="radio" name="icon" value="draje.svg" {{ $product->icon == 'draje.svg' ? 'checked' : '' }}>
-          <label for="draje"></label>
-        </li>
-        <li class="product-icon-item">
-          <input id="drops" class="visually-hidden" type="radio" name="icon" value="drops.svg" {{ $product->icon == 'drops.svg' ? 'checked' : '' }}>
-          <label for="drops"></label>
-        </li>
-        <li class="product-icon-item">
-          <input id="gel" class="visually-hidden" type="radio" name="icon" value="gel.svg" {{ $product->icon == 'gel.svg' ? 'checked' : '' }}>
-          <label for="gel"></label>
-        </li>
-        <li class="product-icon-item">
-          <input id="injuction" class="visually-hidden" type="radio" name="icon" value="injuction.svg" {{ $product->icon == 'injuction.svg' ? 'checked' : '' }}>
-          <label for="injuction"></label>
-        </li>
-        <li class="product-icon-item">
-          <input id="mix" class="visually-hidden" type="radio" name="icon" value="mix.svg" {{ $product->icon == 'mix.svg' ? 'checked' : '' }}>
-          <label for="mix"></label>
-        </li>
-        <li class="product-icon-item">
-          <input id="sprey-2" class="visually-hidden" type="radio" name="icon" value="sprey-2.svg" {{ $product->icon == '2.svg' ? 'checked' : '' }}>
-          <label for="sprey-2"></label>
-        </li>
-        <li class="product-icon-item">
-          <input id="sprey" class="visually-hidden" type="radio" name="icon" value="sprey.svg" {{ $product->icon == 'sprey.svg' ? 'checked' : '' }}>
-          <label for="sprey"></label>
-        </li>
-        <li class="product-icon-item">
-          <input id="suspension" class="visually-hidden" type="radio" name="icon" value="suspension.svg" {{ $product->icon == 'suspension.svg' ? 'checked' : '' }}>
-          <label for="suspension"></label>
-        </li>
-        <li class="product-icon-item">
-          <input id="syrop" class="visually-hidden" type="radio" name="icon" value="syrop.svg" {{ $product->icon == 'syrop.svg' ? 'checked' : '' }}>
-          <label for="syrop"></label>
-        </li>
-        <li class="product-icon-item">
-          <input id="tablets" class="visually-hidden" type="radio" name="icon" value="tablets.svg" {{ $product->icon == 'tablets.svg' ? 'checked' : '' }}>
-          <label for="tablets"></label>
-        </li>
-      </ul>
-      <label class="form-label form-label-textarea">Состав на русском:
-        <textarea class="simditor-textarea" name="ru-composition">{{ old('ru-composition') == '' ? $product->ru_composition : old('ru-composition') }}</textarea>
-      </label>
-      <label class="form-label form-label-textarea">Состав на английском:
-        <textarea class="simditor-textarea" name="en-composition">{{ old('en-composition') == '' ? $product->en_composition : old('en-composition') }}</textarea>
-      </label>
-      <label class="form-label form-label-textarea">Показания к применению на русском:
-        <textarea class="simditor-textarea" name="ru-indications">{{ old('ru-indications') == '' ? $product->ru_indications : old('ru-indications') }}</textarea>
-      </label>
-      <label class="form-label form-label-textarea">Показания к применению на английском:
-        <textarea class="simditor-textarea" name="en-indications">{{ old('en-indications') == '' ? $product->en_indications : old('en-indications') }}</textarea>
-      </label>
-      <label class="form-label form-label-textarea">Способ применения применению на русском:
-        <textarea class="simditor-textarea" name="ru-method">{{ old('ru-method') == '' ? $product->ru_method : old('ru-method') }}</textarea>
-      </label>
-      <label class="form-label form-label-textarea">Способ применения применению на английском:
-        <textarea class="simditor-textarea" name="en-method">{{ old('en-method') == '' ? $product->en_method : old('en-method') }}</textarea>
-      </label>
-      <label class="form-label form-label-textarea">Описание на русском:
-        <textarea class="form-textarea" name="ru-description">{{ old('ru-description') == '' ? $product->ru_description : old('ru-description') }}</textarea>
-      </label>
-      <label class="form-label form-label-textarea">Описание на английском:
-        <textarea class="form-textarea" name="en-description">{{ old('en-description') == '' ? $product->en_description : old('en-description') }}</textarea>
-      </label>
-      <div class="form-btn-wrap">
-        <button class="form-btn green-bg" type="submit">Редактировать</button>
-        <button class="form-btn red-bg" type="button" data-action="delete-product">Удалить</button>
-      </div>
+      </fieldset>
+      <fieldset class="form__element form__element--file">
+        <legend class="form__label">Инструкция на английском</legend>
+        <p class="form__file-preview" data-instruction="en">{{ $product->en_instruction ? $product->en_instruction : 'Файл не выбран' }}</p>
+        <div class="form-actions__wrap">
+          <label class="form-actions__edit" for="en-instruction">Редактировать</label>
+          <input class="visually-hidden" id="en-instruction" type="file" name="en-instruction">
+          <button class="form-actions__delete" data-action="delete-en-instruction" type="button">Удалить</button>
+          <input class="visually-hidden" type="checkbox" name="en-instruction-deleted">
+        </div>
+      </fieldset>
+      <fieldset class="form__element form__element--wide form__element--desc">
+        <legend class="form__label">Описание на русском</legend>
+        <textarea class="form__textarea" name="ru-description" placeholder="Описание продукта на русском языке">{{ $product->ru_description }}</textarea>
+      </fieldset>
+      <fieldset class="form__element form__element--wide form__element--desc">
+        <legend class="form__label">Описание на английском</legend>
+        <textarea class="form__textarea" name="en-description" placeholder="Product description in English">{{ $product->en_description }}</textarea>
+      </fieldset>
+      <fieldset class="form__element form__element--wide form__element--long">
+        <legend class="form__label">Состав на русском</legend>
+        <textarea class="simditor-textarea" name="ru-composition" placeholder="Состав продукта на русском языке">{{ $product->ru_composition }}</textarea>
+      </fieldset>
+      <fieldset class="form__element form__element--wide form__element--long">
+        <legend class="form__label">Состав на английском</legend>
+        <textarea class="simditor-textarea" name="en-composition" placeholder="Product composition in English">{{ $product->en_composition }}</textarea>
+      </fieldset>
+      <fieldset class="form__element form__element--wide form__element--long">
+        <legend class="form__label">Показания к применению на русском</legend>
+        <textarea class="simditor-textarea" name="ru-indications" placeholder="Показания к применению на русском языке">{{ $product->ru_indications }}</textarea>
+      </fieldset>
+      <fieldset class="form__element form__element--wide form__element--long">
+        <legend class="form__label">Показания к применению на английском</legend>
+        <textarea class="simditor-textarea" name="en-indications" placeholder="Indications for use in English">{{ $product->en_indications }}</textarea>
+      </fieldset>
+      <fieldset class="form__element form__element--wide form__element--long">
+        <legend class="form__label">Способ применения на русском</legend>
+        <textarea class="simditor-textarea" name="ru-method" placeholder="Способ применения на русском языке">{{ $product->ru_method }}</textarea>
+      </fieldset>
+      <fieldset class="form__element form__element--wide form__element--long">
+        <legend class="form__label">Способ применения на английском</legend>
+        <textarea class="simditor-textarea" name="en-method" placeholder="How to use method in English">{{ $product->en_method }}</textarea>
+      </fieldset>
+      <fieldset class="form__element form__element--submit">
+        <button class="form__submit" type="submit">Редактировать</button> или <a class="form__reset" href="javascript:window.location.href=window.location.href">отменить</a>
+      </fieldset>
     </form>
-    <div class="confirm-modal hidden">
-      <form class="confirm-form" action="{{ route('products.delete') }}" method="post">
-        @csrf
-        <input type="hidden" name="id" value="{{ $product->id }}">
-        <p class="confirm-msg">Вы действительно хотите удалить этот продукт?</p>
-        <div class="form-btn-wrap">
-          <button class="form-btn green-bg" type="reset" data-action="cancel">Отмена</button>
-          <button class="form-btn red-bg" type="submit">Удалить</button>
-        </div>
-      </form>
-    </div>
   </main>
 @endsection
