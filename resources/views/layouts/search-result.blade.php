@@ -1,7 +1,7 @@
 <ul class="results">
   @foreach ($result->products as $product)
     <li class="results-item">
-      <a class="results-link" href="{{route('products.read', $product->id)}}">
+      <a class="results-link" href="{{route('products.read', $product->slug)}}">
         <span class="results-title">{!! $product->title !!}</span>
         <span class="results-breadcrumbs">{{__('Products')}}</span>
         <span class="results-more-icon">
@@ -12,7 +12,7 @@
   @endforeach
   @foreach ($result->news as $news)
     <li class="results-item">
-      <a class="results-link" href="{{route('news.read', $news->id)}}">
+      <a class="results-link" href="{{route('news.read', $news->slug)}}">
         <span class="results-title">{!! $news->title !!}</span>
         <span class="results-breadcrumbs">{{__('Industry news')}}</span>
         <span class="results-more-icon">

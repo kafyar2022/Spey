@@ -32,6 +32,7 @@ class MainController extends Controller
     $result->products = Product::select(
       'id',
       $locale . '_title as title',
+      'slug',
       'trashed',
     )->where('trashed', false)
       ->where($locale . '_title', 'like', '%' . $keyword . '%')
@@ -45,6 +46,7 @@ class MainController extends Controller
     $result->news = News::select(
       'id',
       $locale . '_title as title',
+      'slug',
       $locale . '_text as text',
       'trashed',
     )->where($locale . '_title', 'like', '%' . $keyword . '%')
