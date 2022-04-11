@@ -10,6 +10,8 @@ class News extends Model
 {
   use HasFactory, Sluggable;
 
+  protected $guarded = [];
+
   public function sluggable()
   {
     return [

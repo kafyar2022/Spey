@@ -48,6 +48,7 @@ class PagesController extends Controller
     )->where('trashed', false)
       ->orderby('view_rate', 'desc')
       ->get();
+
     if ($keyword) {
       foreach ($data->newsCategories as $category) {
         $category->title = Helper::selectKeyword($keyword, $category->title);
@@ -62,6 +63,7 @@ class PagesController extends Controller
         'view_rate',
         'trashed'
       )->where('trashed', false)->orderBy('view_rate')->first();
+
       if ($keyword) {
         $newsCategory->new->title = Helper::selectKeyword($keyword, $newsCategory->new->title);
       }

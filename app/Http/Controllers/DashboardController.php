@@ -14,14 +14,13 @@ class DashboardController extends Controller
 {
   public function index()
   {
-    $locale = App::currentLocale();
     // get quantities
     $productsQuantity = Product::where('trashed', false)->count();
     $categoriesQuantity = ProductsCategory::where('trashed', false)->count();
     // paginate all products
     $products = Product::select(
       'id',
-      $locale . '_title as title',
+      'ru_title as title',
       'trashed',
     )->where('trashed', false)->orderBy('title', 'asc')->paginate(15);
     $rank = $products->firstItem();
@@ -31,13 +30,12 @@ class DashboardController extends Controller
 
   public function productsCreate()
   {
-    $locale = App::currentLocale();
     // get quantities
     $productsQuantity = Product::where('trashed', false)->count();
     // get all products categories
     $categories = ProductsCategory::select(
       'id',
-      $locale . '_title as title',
+      'ru_title as title',
       'trashed',
     )->where('trashed', false)->orderBy('title', 'asc')->get();
 
@@ -46,13 +44,12 @@ class DashboardController extends Controller
 
   public function productsUpdate(Product $product)
   {
-    $locale = App::currentLocale();
     // get quantities
     $productsQuantity = Product::where('trashed', false)->count();
     // get all products categories
     $categories = ProductsCategory::select(
       'id',
-      $locale . '_title as title',
+      'ru_title as title',
       'trashed',
     )->where('trashed', false)->orderBy('title', 'asc')->get();
 
@@ -61,7 +58,6 @@ class DashboardController extends Controller
 
   public function productsCategories()
   {
-    $locale = App::currentLocale();
     // get quantities
     $productsQuantity = Product::where('trashed', false)->count();
     $categoriesQuantity = ProductsCategory::where('trashed', false)->count();
@@ -74,14 +70,13 @@ class DashboardController extends Controller
 
   public function news()
   {
-    $locale = App::currentLocale();
     // get quantities
     $newsQuantity = News::where('trashed', false)->count();
     $categoriesQuantity = NewsCategory::where('trashed', false)->count();
     // paginate all news
     $news = News::select(
       'id',
-      $locale . '_title as title',
+      'ru_title as title',
       'trashed',
     )->where('trashed', false)->orderBy('title', 'asc')->paginate(15);
     $rank = $news->firstItem();
@@ -91,13 +86,12 @@ class DashboardController extends Controller
 
   public function newsCreate()
   {
-    $locale = App::currentLocale();
     // get quantities
     $newsQuantity = News::where('trashed', false)->count();
     // get all news categories
     $categories = NewsCategory::select(
       'id',
-      $locale . '_title as title',
+      'ru_title as title',
       'trashed',
     )->where('trashed', false)->orderBy('title', 'asc')->get();
 
@@ -106,13 +100,12 @@ class DashboardController extends Controller
 
   public function newsUpdate(News $news)
   {
-    $locale = App::currentLocale();
     // get quantities
     $newsQuantity = News::where('trashed', false)->count();
     // get all products categories
     $categories = NewsCategory::select(
       'id',
-      $locale . '_title as title',
+      'ru_title as title',
       'trashed',
     )->where('trashed', false)->orderBy('title', 'asc')->get();
 
@@ -121,7 +114,6 @@ class DashboardController extends Controller
 
   public function newsCategories()
   {
-    $locale = App::currentLocale();
     // get quantities
     $newsQuantity = News::where('trashed', false)->count();
     $categoriesQuantity = NewsCategory::where('trashed', false)->count();
@@ -134,13 +126,12 @@ class DashboardController extends Controller
 
   public function histories()
   {
-    $locale = App::currentLocale();
     // get quantities
     $historiesQuantity = History::where('trashed', false)->count();
     // paginate all histories
     $histories = History::select(
       'id',
-      $locale . '_title as title',
+      'ru_title as title',
       'year',
       'trashed',
     )->where('trashed', false)->orderBy('year', 'desc')->paginate(15);
@@ -151,7 +142,6 @@ class DashboardController extends Controller
 
   public function historiesCreate()
   {
-    $locale = App::currentLocale();
     // get quantities
     $historiesQuantity = News::where('trashed', false)->count();
 
@@ -160,7 +150,6 @@ class DashboardController extends Controller
 
   public function historiesUpdate(History $history)
   {
-    $locale = App::currentLocale();
     // get quantities
     $historiesQuantity = History::where('trashed', false)->count();
 

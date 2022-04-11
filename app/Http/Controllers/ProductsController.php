@@ -95,7 +95,7 @@ class ProductsController extends Controller
 
     $imgName = 'muffin-grey.svg';
     if ($request->has('photo')) {
-      $img = $request->file('photo');
+      $img = request('photo');
       $imgName = uniqid() . '.' . $img->getClientOriginalExtension();
       $path = public_path('img/products');
       $img->move($path, $imgName);
@@ -103,36 +103,36 @@ class ProductsController extends Controller
 
     $ruInstructionName = '';
     if ($request->has('ru-instruction')) {
-      $ruInstruction = $request->file('ru-instruction');
+      $ruInstruction = request('ru-instruction');
       $ruInstructionName = strtolower($request->input('ru-title')) . '-ru.' . $ruInstruction->getClientOriginalExtension();
       $ruInstruction->move(public_path('files'), $ruInstructionName);
     }
 
     $enInstructionName = '';
     if ($request->has('en-instruction')) {
-      $enInstruction = $request->file('en-instruction');
+      $enInstruction = request('en-instruction');
       $enInstructionName = strtolower($request->input('en-title')) . '-en.' . $enInstruction->getClientOriginalExtension();
       $enInstruction->move(public_path('files'), $enInstructionName);
     }
 
     $product = Product::create([
       'img' => $imgName,
-      'icon' => $request->input('icon'),
-      'category_id' => $request->input('category-id'),
-      'recipe' => $request->input('prescription'),
-      'ru_title' => $request->input('ru-title'),
-      'en_title' => $request->input('en-title'),
+      'icon' => request('icon'),
+      'category_id' => request('category-id'),
+      'recipe' => request('prescription'),
+      'ru_title' => request('ru-title'),
+      'en_title' => request('en-title'),
       'slug' => SlugService::createSlug(Product::class, 'slug', $request->input('ru-title')),
       'ru_instruction' => $ruInstructionName,
       'en_instruction' => $enInstructionName,
-      'ru_description' => $request->input('ru-description'),
-      'en_description' => $request->input('en-description'),
-      'ru_composition' => $request->input('ru-composition'),
-      'en_composition' => $request->input('en-composition'),
-      'ru_indications' => $request->input('ru-indications'),
-      'en_indications' => $request->input('en-indications'),
-      'ru_method' => $request->input('ru-method'),
-      'en_method' => $request->input('en-method'),
+      'ru_description' => request('ru-description'),
+      'en_description' => request('en-description'),
+      'ru_composition' => request('ru-composition'),
+      'en_composition' => request('en-composition'),
+      'ru_indications' => request('ru-indications'),
+      'en_indications' => request('en-indications'),
+      'ru_method' => request('ru-method'),
+      'en_method' => request('en-method'),
     ]);
 
     if ($product) {
@@ -151,31 +151,31 @@ class ProductsController extends Controller
       'en-title' => 'required',
     ]);
 
-    $product = Product::find($request->input('product-id'));
+    $product = Product::find(request('product-id'));
 
     if ($request->has('photo')) {
       $path = public_path('img/products/' . $product->img);
       if ($product->img !== 'muffin-grey.svg' && file_exists($path)) {
         unlink($path);
       }
-      $img = $request->file('photo');
+      $img = request('photo');
       $imgName = uniqid() . '.' . $img->getClientOriginalExtension();
       $img->move(public_path('img/products'), $imgName);
       $product->img = $imgName;
     }
 
-    $product->icon = $request->input('icon');
-    $product->category_id = $request->input('category-id');
-    $product->recipe = $request->input('prescription');
-    $product->ru_title = $request->input('ru-title');
-    $product->en_title = $request->input('en-title');
+    $product->icon = request('icon');
+    $product->category_id = request('category-id');
+    $product->recipe = request('prescription');
+    $product->ru_title = request('ru-title');
+    $product->en_title = request('en-title');
 
     if ($request->hasFile('ru-instruction')) {
       $path = public_path('files/' . $product->ru_instruction);
       if ($product->ru_instruction && file_exists($path)) {
         unlink($path);
       }
-      $ruInstruction = $request->file('ru-instruction');
+      $ruInstruction = request('ru-instruction');
       $ruInstructionName = strtolower($request->input('ru-title')) . '-ru.' . $ruInstruction->getClientOriginalExtension();
       $ruInstruction->move(public_path('files'), $ruInstructionName);
       $product->ru_instruction = $ruInstructionName;
@@ -185,7 +185,7 @@ class ProductsController extends Controller
       if ($product->en_instruction && file_exists($path)) {
         unlink($path);
       }
-      $enInstruction = $request->file('en-instruction');
+      $enInstruction = request('en-instruction');
       $enInstructionName = strtolower($request->input('en-title')) . '-en.' . $enInstruction->getClientOriginalExtension();
       $enInstruction->move(public_path('files'), $enInstructionName);
       $product->en_instruction = $enInstructionName;
@@ -205,14 +205,14 @@ class ProductsController extends Controller
       $product->en_instruction = '';
     }
 
-    $product->en_composition = $request->input('en-composition');
-    $product->ru_composition = $request->input('ru-composition');
-    $product->en_indications = $request->input('en-indications');
-    $product->ru_indications = $request->input('ru-indications');
-    $product->en_description = $request->input('en-description');
-    $product->ru_description = $request->input('ru-description');
-    $product->en_method = $request->input('en-method');
-    $product->ru_method = $request->input('ru-method');
+    $product->en_composition = request('en-composition');
+    $product->ru_composition = request('ru-composition');
+    $product->en_indications = request('en-indications');
+    $product->ru_indications = request('ru-indications');
+    $product->en_description = request('en-description');
+    $product->ru_description = request('ru-description');
+    $product->en_method = request('en-method');
+    $product->ru_method = request('ru-method');
 
     $update = $product->update();
 

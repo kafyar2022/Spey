@@ -33,7 +33,7 @@
       <h2 class="industry-news-title">{!! $page['industry-news-title'] !!}</h2>
       <div class="owl-carousel industry-news-carousel">
         @foreach ($data->newsCategories as $newsCategory)
-          <a class="news-categories-item" href="{{ route('news.read', $newsCategory->new->id) }}">
+          <a class="news-categories-item" href="{{ route('news.read', $newsCategory->new->slug) }}">
             <h3 class="news-categories-title">{!! $newsCategory->title !!}</h3>
             <div class="news-categories-description">{!! $newsCategory->new->title !!}</div>
             <div class="news-categories-read">
