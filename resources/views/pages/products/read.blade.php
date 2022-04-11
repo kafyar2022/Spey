@@ -49,7 +49,9 @@
           </div>
         </div>
         <div class="vitrin-right">
-          <img class="vitrin__product-img" src="{{ asset('img/products/' . $product->img) }}" alt="{{ $product->title }}">
+          @if ($product->img !== 'muffin-grey.svg')
+            <img class="vitrin__product-img" src="{{ asset('img/products/' . $product->img) }}" alt="{{ $product->title }}">
+          @endif
         </div>
       </div>
     </section>
@@ -57,23 +59,7 @@
       <div class="container">
         <div class="product-info__title-wrap">
           <h2 class="product-info__title">{{ __('Instructions for use') }}</h2>
-          @if ($locale == 'en')
-            @if ($product->instruction)
-              <a class="download-link" href="{{ route('products.download.instructions') }}?id={{ $product->id }}">
-                <span class="download-link__icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="13.108" height="15" viewBox="0 0 13.108 15">
-                    <g transform="translate(-32.304)">
-                      <g transform="translate(32.304)">
-                        <path d="M45.388,8.315a.313.313,0,0,0-.289-.193H41.676V.312A.313.313,0,0,0,41.364,0h-5a.313.313,0,0,0-.312.312v7.81H32.617a.312.312,0,0,0-.221.533l6.232,6.253a.313.313,0,0,0,.442,0l6.25-6.253A.312.312,0,0,0,45.388,8.315Z" transform="translate(-32.304)" fill="#fff" />
-                      </g>
-                    </g>
-                  </svg>
-                </span>
-                {{ __('Download instruction') }}
-              </a>
-            @endif
-          @endif
-          @if ($locale == 'ru')
+          @if ($product->instruction)
             <a class="download-link" href="{{ route('products.download.instructions') }}?id={{ $product->id }}">
               <span class="download-link__icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13.108" height="15" viewBox="0 0 13.108 15">

@@ -28,36 +28,4 @@ if (productsUpdate) {
       toolbarFloat: false,
     });
   }
-
-  //* confirm-modal start
-  deleteBtn.onclick = () => {
-    confirmModal.classList.remove('hidden');
-  };
-  confirmModal.addEventListener('click', e => {
-    if (e.target.className == 'confirm-modal' || e.target.dataset.action == 'cancel') {
-      confirmModal.classList.add('hidden');
-    }
-  });
-  //* confirm-modal end
-  const imgChooserElement = document.querySelector('input[name="img"]');
-  const imgPreviewElement = document.querySelector('.form-img');
-
-  imgChooserElement.addEventListener('change', (evt) => {
-    const file = evt.target.files[0];
-    imgPreviewElement.src = URL.createObjectURL(file);
-  });
-
-  const ruInstructionElement = document.querySelector('input[name="ru-instruction"]');
-  const ruInstructionPreviewElement = document.querySelector('.ru-instruction-preview');
-
-  ruInstructionElement.addEventListener('change', (evt) => {
-    ruInstructionPreviewElement.textContent = evt.target.value;
-  });
-
-  const enInstructionElement = document.querySelector('input[name="en-instruction"]');
-  const enInstructionPreviewElement = document.querySelector('.en-instruction-preview');
-
-  enInstructionElement.addEventListener('change', (evt) => {
-    enInstructionPreviewElement.textContent = evt.target.value;
-  });
 }

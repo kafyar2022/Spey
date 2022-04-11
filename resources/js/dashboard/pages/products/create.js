@@ -27,25 +27,14 @@ if (productsCreate) {
     });
   }
 
-  const imgChooserElement = document.querySelector('input[name="img"]');
-  const imgPreviewElement = document.querySelector('.form-img');
+  const photoChooserEl = document.querySelector('input[name="photo"]');
+  const photoPreviewEl = document.querySelector('.form__photo-preview');
+  const ruInstructionChooserEl = document.querySelector('input[name="ru-instruction"]');
+  const ruInstructionPreviewEl = document.querySelector('[data-instruction="ru"]');
+  const enInstructionChooserEl = document.querySelector('input[name="en-instruction"]');
+  const enInstructionPreviewEl = document.querySelector('[data-instruction="en"]');
 
-  imgChooserElement.addEventListener('change', (evt) => {
-    const file = evt.target.files[0];
-    imgPreviewElement.src = URL.createObjectURL(file);
-  });
-
-  const ruInstructionElement = document.querySelector('input[name="ru-instruction"]');
-  const ruInstructionPreviewElement = document.querySelector('.ru-instruction-preview');
-
-  ruInstructionElement.addEventListener('change', (evt) => {
-    ruInstructionPreviewElement.textContent = evt.target.value;
-  });
-
-  const enInstructionElement = document.querySelector('input[name="en-instruction"]');
-  const enInstructionPreviewElement = document.querySelector('.en-instruction-preview');
-
-  enInstructionElement.addEventListener('change', (evt) => {
-    enInstructionPreviewElement.textContent = evt.target.value;
-  });
+  window.setPhotoPreview(photoChooserEl, photoPreviewEl);
+  window.setFilePreview(ruInstructionChooserEl, ruInstructionPreviewEl);
+  window.setFilePreview(enInstructionChooserEl, enInstructionPreviewEl);
 }

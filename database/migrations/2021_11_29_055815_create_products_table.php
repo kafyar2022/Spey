@@ -15,6 +15,8 @@ class CreateProductsTable extends Migration
   {
     Schema::create('products', function (Blueprint $table) {
       $table->id();
+      $table->string('img')->default('default.png');
+      $table->string('icon')->nullable();
       $table->integer('category_id');
       $table->string('en_title');
       $table->string('ru_title');
@@ -31,8 +33,6 @@ class CreateProductsTable extends Migration
       $table->text('ru_method')->nullable();
       $table->boolean('recipe');
       $table->bigInteger('view_rate')->default(0);
-      $table->string('img')->default('default.png');
-      $table->string('icon')->nullable();
       $table->boolean('trashed')->default(false);
       $table->timestamps();
     });

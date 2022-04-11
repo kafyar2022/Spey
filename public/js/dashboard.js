@@ -19,6 +19,20 @@ html.addEventListener('click', function (e) {
     modal.classList.add('hidden');
   });
 }); //! hide modals end
+
+window.setPhotoPreview = function (fileChooserEl, previewEl) {
+  fileChooserEl.addEventListener('change', function (evt) {
+    var file = evt.target.files[0];
+    previewEl.src = URL.createObjectURL(file);
+    previewEl.style.backgroundColor = 'transparent';
+  });
+};
+
+window.setFilePreview = function (fileChooserEl, previewEl) {
+  fileChooserEl.addEventListener('change', function (evt) {
+    previewEl.textContent = evt.target.value;
+  });
+};
 })();
 
 // This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
@@ -91,22 +105,15 @@ if (productsCreate) {
     });
   }
 
-  var imgChooserElement = document.querySelector('input[name="img"]');
-  var imgPreviewElement = document.querySelector('.form-img');
-  imgChooserElement.addEventListener('change', function (evt) {
-    var file = evt.target.files[0];
-    imgPreviewElement.src = URL.createObjectURL(file);
-  });
-  var ruInstructionElement = document.querySelector('input[name="ru-instruction"]');
-  var ruInstructionPreviewElement = document.querySelector('.ru-instruction-preview');
-  ruInstructionElement.addEventListener('change', function (evt) {
-    ruInstructionPreviewElement.textContent = evt.target.value;
-  });
-  var enInstructionElement = document.querySelector('input[name="en-instruction"]');
-  var enInstructionPreviewElement = document.querySelector('.en-instruction-preview');
-  enInstructionElement.addEventListener('change', function (evt) {
-    enInstructionPreviewElement.textContent = evt.target.value;
-  });
+  var photoChooserEl = document.querySelector('input[name="photo"]');
+  var photoPreviewEl = document.querySelector('.form__photo-preview');
+  var ruInstructionChooserEl = document.querySelector('input[name="ru-instruction"]');
+  var ruInstructionPreviewEl = document.querySelector('[data-instruction="ru"]');
+  var enInstructionChooserEl = document.querySelector('input[name="en-instruction"]');
+  var enInstructionPreviewEl = document.querySelector('[data-instruction="en"]');
+  window.setPhotoPreview(photoChooserEl, photoPreviewEl);
+  window.setFilePreview(ruInstructionChooserEl, ruInstructionPreviewEl);
+  window.setFilePreview(enInstructionChooserEl, enInstructionPreviewEl);
 }
 })();
 
@@ -145,35 +152,7 @@ if (productsUpdate) {
       //image removed
       toolbarFloat: false
     });
-  } //* confirm-modal start
-
-
-  deleteBtn.onclick = function () {
-    confirmModal.classList.remove('hidden');
-  };
-
-  confirmModal.addEventListener('click', function (e) {
-    if (e.target.className == 'confirm-modal' || e.target.dataset.action == 'cancel') {
-      confirmModal.classList.add('hidden');
-    }
-  }); //* confirm-modal end
-
-  var imgChooserElement = document.querySelector('input[name="img"]');
-  var imgPreviewElement = document.querySelector('.form-img');
-  imgChooserElement.addEventListener('change', function (evt) {
-    var file = evt.target.files[0];
-    imgPreviewElement.src = URL.createObjectURL(file);
-  });
-  var ruInstructionElement = document.querySelector('input[name="ru-instruction"]');
-  var ruInstructionPreviewElement = document.querySelector('.ru-instruction-preview');
-  ruInstructionElement.addEventListener('change', function (evt) {
-    ruInstructionPreviewElement.textContent = evt.target.value;
-  });
-  var enInstructionElement = document.querySelector('input[name="en-instruction"]');
-  var enInstructionPreviewElement = document.querySelector('.en-instruction-preview');
-  enInstructionElement.addEventListener('change', function (evt) {
-    enInstructionPreviewElement.textContent = evt.target.value;
-  });
+  }
 }
 })();
 

@@ -10,9 +10,11 @@ class Product extends Model
 {
   use HasFactory, Sluggable;
 
-  protected $fillable = [
-    'category_id', 'ru_title', 'en_title', 'slug',
-  ];
+  // protected $fillable = [
+  //   'category_id', 'ru_title', 'en_title', 'slug',
+  // ];
+
+  protected $guarded = [];
 
   public function sluggable()
   {

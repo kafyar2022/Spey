@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ProductsCategory;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -88,55 +89,54 @@ class ProductsController extends Controller
     // validation
     $request->validate([
       'category-id' => 'required',
-      'ru-title' => 'required|unique:products,ru_title',
-      'en-title' => 'required|unique:products,en_title',
-      'img' => 'mimes:png|max:1000',
-      'ru-instruction' => 'required',
-      'recipe' => 'required',
+      'prescription' => 'required',
+      'ru-title' => 'required',
+      'en-title' => 'required',
     ]);
-    if ($request->recipe == 'true') {
-      $request->recipe = true;
-    } else {
-      $request->recipe = false;
-    }
-    // save image file
-    if ($request->file('img')) {
-      $img = $request->file('img');
+
+    $imgName = 'muffin-grey.svg';
+    $img = $request->file('photo');
+    if ($img) {
       $imgName = uniqid() . '.' . $img->getClientOriginalExtension();
       $path = public_path('img/products');
       $img->move($path, $imgName);
     }
-    // save instruction files
+
+    $ruInstructionName = '';
     $ruInstruction = $request->file('ru-instruction');
+    if ($ruInstruction) {
+      $ruInstructionName = strtolower($request->input('ru-title')) . '-ru.' . $ruInstruction->getClientOriginalExtension();
+      $ruInstruction->move(public_path('files'), $ruInstructionName);
+    }
+
+    $enInstructionName = '';
     $enInstruction = $request->file('en-instruction');
-    $ruInstructionName = strtolower($request->input('ru-title')) . '-ru.' . $ruInstruction->getClientOriginalExtension();
-    $path = public_path('files');
-    $ruInstruction->move($path, $ruInstructionName);
     if ($enInstruction) {
       $enInstructionName = strtolower($request->input('en-title')) . '-en.' . $enInstruction->getClientOriginalExtension();
-      $enInstruction->move($path, $enInstructionName);
+      $enInstruction->move(public_path('files'), $enInstructionName);
     }
-    // create new product
-    $product = new Product;
-    $product->category_id = $request->input('category-id');
-    $product->en_title = $request->input('en-title');
-    $product->ru_title = $request->input('ru-title');
-    $enInstruction ? $product->en_instruction = $enInstructionName : '';
-    $product->ru_instruction = $ruInstructionName;
-    $request->input('en-composition') ? $product->en_composition = $request->input('en-composition') : '';
-    $request->input('ru-composition') ? $product->ru_composition = $request->input('ru-composition') : '';
-    $request->input('en-indications') ? $product->en_indications = $request->input('en-indications') : '';
-    $request->input('ru-indications') ? $product->ru_indications = $request->input('ru-indications') : '';
-    $request->input('en-description') ? $product->en_description = $request->input('en-description') : '';
-    $request->input('ru-description') ? $product->ru_description = $request->input('ru-description') : '';
-    $request->input('en-method') ? $product->ru_method = $request->input('en-method') : '';
-    $request->input('ru-method') ? $product->ru_method = $request->input('ru-method') : '';
-    $request->icon ? $product->icon = $request->icon : '';
-    $product->recipe = $request->recipe;
-    $request->file('img') ? $product->img = $imgName : '';
-    $save = $product->save();
 
-    if ($save) {
+    $product = Product::create([
+      'img' => $imgName,
+      'icon' => $request->input('icon'),
+      'category_id' => $request->input('category-id'),
+      'recipe' => $request->input('prescription'),
+      'ru_title' => $request->input('ru-title'),
+      'en_title' => $request->input('en-title'),
+      'slug' => SlugService::createSlug(Product::class, 'slug', $request->input('ru-title')),
+      'ru_instruction' => $ruInstructionName,
+      'en_instruction' => $enInstructionName,
+      'ru_description' => $request->input('ru-description'),
+      'en_description' => $request->input('en-description'),
+      'ru_composition' => $request->input('ru-composition'),
+      'en_composition' => $request->input('en-composition'),
+      'ru_indications' => $request->input('ru-indications'),
+      'en_indications' => $request->input('en-indications'),
+      'ru_method' => $request->input('ru-method'),
+      'en_method' => $request->input('en-method'),
+    ]);
+
+    if ($product) {
       return back()->with('success', 'Новый продукт успешно добавлен!');
     } else {
       return back()->with('fail', 'Упс... Что-то пошло не так попробуйте позже!');
