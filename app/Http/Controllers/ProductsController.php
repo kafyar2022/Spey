@@ -18,6 +18,7 @@ class ProductsController extends Controller
       'products.id',
       'products.category_id',
       'products.' . $locale . '_title as title',
+      'slug',
       'products.recipe',
       'products.img',
       'products.view_rate'
