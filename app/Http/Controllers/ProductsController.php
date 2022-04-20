@@ -21,8 +21,9 @@ class ProductsController extends Controller
       'slug',
       'products.recipe',
       'products.img',
-      'products.view_rate'
-    )->where('products.' . $locale . '_title', 'like', '%' . $request->keyword . '%')->orderBy('products.view_rate', 'desc');
+      'products.view_rate',
+      'trashed'
+    )->where('trashed', false)->where('products.' . $locale . '_title', 'like', '%' . $request->keyword . '%')->orderBy('products.view_rate', 'desc');
 
     switch ($request->filter) {
       case 'with-recipe':
