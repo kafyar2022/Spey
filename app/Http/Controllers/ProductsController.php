@@ -21,6 +21,7 @@ class ProductsController extends Controller
       'slug',
       'products.recipe',
       'products.img',
+      'icon',
       'products.view_rate',
       'trashed'
     )->where('trashed', false)->where('products.' . $locale . '_title', 'like', '%' . $request->keyword . '%')->orderBy('products.view_rate', 'desc');
