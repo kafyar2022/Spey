@@ -83,3 +83,10 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/dashboard/histories/search', [HistoriesController::class, 'dashSearch'])->name('dashboard.histories.search');
   });
 });
+
+Route::permanentRedirect('/category/products', '/products');
+Route::permanentRedirect('/category/products/navravleniya', '/products');
+Route::permanentRedirect('/history_of_presence', '/about#geography-presence');
+Route::permanentRedirect('/values', '/about');
+Route::permanentRedirect('/carrier_development', '/about');
+Route::permanentRedirect('/carrier', '/contacts#pharmacovigilance');
